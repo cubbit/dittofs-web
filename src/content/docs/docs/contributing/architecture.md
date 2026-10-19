@@ -28,7 +28,6 @@ This document provides a deep dive into DittoFS's architecture, design patterns,
 - [Multi-Node Metadata](#multi-node-metadata)
 - [Durable Handle State Flow](#durable-handle-state-flow)
 - [Engine API + BlockRef + Cache](#engine-api--blockref--cache)
-- [File-Level Dedup: ObjectID + Merkle Root](#file-level-dedup-objectid--merkle-root)
 - [Migration & Block-Layout Routing](#migration--block-layout-routing)
 
 ## Core Abstraction Layers
@@ -142,13 +141,12 @@ DittoFS uses a **Runtime-centric architecture** where the Runtime is the single 
 
 **6. BlockStore** (`pkg/block/`)
 - Per-share block storage orchestrator. Each share gets its own `*engine.Store` instance.
-- `engine.Store` composes the share's journal (`local.LocalStore`, in production always `*journal.Store`) + its one block store (`remote.RemoteStore`) + `engine.RemoteSync`
+- `engine.Store` composes the share's journal (`journal.LocalStore`, in production always `*journal.Store`) + its one block store (`remote.RemoteStore`) + `engine.RemoteSync`
 - Each share gets an isolated journal directory beneath `blockstore.journal.path`; block stores can be shared across shares (ref counted)
 - `shares.Service` owns the lifecycle (create on AddShare, close on RemoveShare)
 - Sub-packages:
   - `engine/`: BlockStore orchestrator — composes the journal and the block store and owns the unified CAS-keyed `Cache` (read buffering + prefetch), the syncer, and the garbage collector. See `pkg/block/engine/cache.go` for the Cache type.
-  - `journal/`: the on-disk journal every share gets — the production `local.LocalStore`
-  - `local/`: the `LocalStore` interface plus `memory/`, an in-memory implementation used by tests
+  - `journal/`: the on-disk journal every share gets — the production `journal.LocalStore`. The `LocalStore` interface lives here too, alongside it. Tests outside the package open a real store through `journal/journaltest/`.
   - `remote/`: block store interface and implementations (`s3/` production, `memory/` testing)
   - `storetest/`: Conformance test helpers for new backend implementations
 
@@ -241,7 +239,7 @@ hashing, or upload on the client path. A background carve pass later packs the
 accumulated dirty ranges into remote blocks (see below). How durable the ack is
 depends on the share's commit acknowledgement (`journal` or `block-store`) and on
 whether its metadata commit is relaxed — two independent axes, see the
-[durability guide](https://github.com/marmos91/dittofs/blob/v0.35.0/docs/guide/durability.md).
+[durability guide](https://github.com/marmos91/dittofs/blob/v0.36.0/docs/guide/durability.md).
 
 **Eviction**:
 - Cache: LRU eviction when the RAM budget is reached. No data loss (the journal still holds the bytes). The cache is per-share but cross-file inside a share — the same content hash referenced by two files shares one entry.
@@ -538,18 +536,22 @@ Mark is idempotent, so resume-on-restart is intentionally not built.
 
 ### Triggers and observability
 
-- **Periodic GC is not yet wired.** There is no scheduler; schedule via
-  cron until one ships.
+- **Periodic** via the background scheduler, on by default. `dfs start`
+  runs GC every `gc.auto_interval` (default 15m; values in (0, 1m) are
+  refused) unless `gc.auto_enabled` is false. See
+  [Garbage Collection](https://github.com/marmos91/dittofs/blob/v0.36.0/docs/guide/garbage-collection.md#automatic-gc-default).
 - **On-demand** via `dfsctl store block gc <share> [--dry-run]`;
   `--dry-run` skips DELETEs and prints up to `gc.dry_run_sample_size`
   candidate keys (default 1000). The mark-sweep is global across every
-  share that targets the same remote, so the `<share>` argument selects
-  which remote(s) to scan rather than scoping the live set to one share.
+  share that targets the same remote, and every run scans every remote.
+  The `<share>` argument only selects where the run summary
+  (`last-run.json`) is written; it does not choose the remotes or scope
+  the live set to one share.
 - **Observability** via structured slog INFO at start/end with `run_id`,
   `hashes_marked`, `objects_swept`, `bytes_freed`, `duration_ms`, and
-  `error_count`, plus a persisted summary at
-  `<localStore>/gc-state/last-run.json`. Inspect with
-  `dfsctl store block gc-status <share>`.
+  `error_count`. An on-demand run also persists its summary at
+  `<localStore>/gc-state/last-run.json`; inspect it with
+  `dfsctl store block gc-status <share>`. A scheduled run persists none.
 
 GC coordinates with the share-snapshots subsystem through a single
 rule: **manifest-on-disk = block held**. Snapshots register a hold
@@ -928,7 +930,7 @@ type MetadataService struct {
 
 // Usage by protocol handlers
 metaSvc := metadata.New()
-metaSvc.RegisterStoreForShare("/export", memoryStore)
+metaSvc.RegisterStoreForShare("/export", inMemoryBadgerStore)
 metaSvc.RegisterStoreForShare("/archive", badgerStore)
 
 // High-level operations (with business logic)
@@ -1056,10 +1058,10 @@ dittofs/
 │   │   │   └── encryption/       # Optional per-chunk encryption
 │   │   ├── engine/               # BlockStore orchestrator + read cache + syncer + GC
 │   │   ├── journal/              # The per-share journal (append-only segments)
+│   │   │   ├── localstore.go     # LocalStore interface (*Store implements it)
+│   │   │   └── journaltest/      # Throwaway real store for outside tests
 │   │   ├── syncer/               # Local -> remote sync
 │   │   ├── blockstoretest/       # Conformance suites for block store impls
-│   │   ├── local/                # LocalStore interface (journal.Store implements it)
-│   │   │   └── memory/           # In-memory local store (testing)
 │   │   └── remote/               # Block store interface
 │   │       ├── s3/               # S3-backed block store
 │   │       └── memory/           # In-memory block store (testing)
@@ -1224,8 +1226,7 @@ EOF.
 
 `CopyPayload` is **O(1)** — a single metadata transaction increments
 `FileChunk.RefCount` for every distinct hash in `srcBlocks` and inserts
-the dst rows. No data copy. This is the file-level dedup primitive the
-ObjectID layer (below) builds on.
+the dst rows. No data copy.
 
 `MetadataCoordinator` (`pkg/block/engine/coordinator.go`) is the
 narrow interface the engine uses to mutate refcounts and persist
@@ -1276,164 +1277,20 @@ threading, so changes to the read/write path stay confined to the helpers.
 
 ### Operator surfaces
 
-- `dfsctl store block audit-refcounts <share>` runs the refcount
-  reconciliation audit (`∑ FileChunk.RefCount == ∑ len(FileAttr.Blocks)`),
-  emits aggregate counts as structured slog INFO, and persists the
-  last-run summary at `<localStore>/audit-state/last-inv02.json`. See
+- `dfsctl store block audit-refcounts <share>` runs the manifest
+  consistency audit: every block reference in `FileAttr.Blocks` must have
+  a backing `FileChunk` row at the same offset with the same hash. It
+  reports `total_refs`, `backed_refs` and `dangling_refs`; a non-zero
+  dangling count is corruption and the command exits non-zero. It does
+  not look for leaked blocks. It emits aggregate counts as structured slog
+  INFO and persists the last-run summary at
+  `<localStore>/audit-state/last-inv02.json`. See
   `docs/guide/cli.md` for the full reference and `docs/guide/faq.md` for operator
   guidance.
 - The cache has no operator-facing config knobs: its RAM budget is
   auto-deduced from available system memory at startup (see
   `pkg/block/defaults.go`), the sequential-prefetch trigger (3 consecutive
   reads) is fixed, and the prefetch worker count defaults to 4 in code.
-
-## File-Level Dedup: ObjectID + Merkle Root
-
-File-level dedup layers on top of the chunk-level CAS path. Each
-`FileAttr` carries an `ObjectID` — a BLAKE3
-Merkle root computed over the file's `BlockRef.Hash` values sorted by
-`Offset`, prefixed by the domain-separation tag
-`dittofs:objectid:v1\x00`:
-
-    ObjectID = BLAKE3("dittofs:objectid:v1\x00" || h0 || h1 || ... || hN-1)
-
-Implemented in `block.ComputeObjectID` (`pkg/block/objectid.go`).
-Stable across rename and engine restart
-by construction (BLAKE3 + FastCDC are both deterministic; the prefix
-protects the output space from per-chunk hash collisions and reserves
-room for future input-shape changes via `v2`/`v3`).
-
-### Lifecycle
-
-- **Cleared (zeroed)** on first dirty write that mutates `FileAttr.Blocks`,
-  in the same metadata transaction.
-- **Recomputed and persisted** at the post-Flush coordinator hook
-  (`Syncer.persistFileChunksAfterFlush` → `MetadataCoordinator.PersistFileChunks`),
-  in the same metadata transaction that updates `FileAttr.Blocks`/`Size`/`Mtime`.
-- **Persisted ONLY on full quiesce** — every block in `Remote` state.
-  Partial flushes leave `ObjectID` at zero.
-
-A non-zero `ObjectID` always reflects a fully-`Remote` consistent state.
-The dedup short-circuit trusts this without checking per-block states.
-Empty files dedup to one canonical constant
-`BLAKE3("dittofs:objectid:v1\x00")`; files written before ObjectID existed
-keep the all-zero sentinel until the migration tool backfills them.
-
-### File-level dedup short-circuit
-
-When a file's BlockRef list is fully `Pending` (newly chunked, nothing
-uploaded yet) and the file has no prior ObjectID, the syncer:
-
-1. Computes the provisional ObjectID over the chunker output.
-2. Calls `MetadataStore.FindByObjectID(ctx, objectID)`.
-3. **On hit:** increments RefCount on every distinct hash in the
-   target's BlockRef list, replaces the file's BlockRef list with the
-   target's (deep copy), persists the ObjectID, decrements RefCount on
-   any speculative-only hashes, invalidates orphaned cache entries,
-   and truncates the per-file append log. **Zero S3 PUTs.**
-4. **On miss:** continues per-block GetByHash + PUT path; ObjectID is
-   finalized at the post-Flush coordinator hook.
-
-Trigger condition: `len(Blocks) > 0 AND every block.State == Pending AND
-file.ObjectID == zero`. This captures fresh-file-create (VM image clone —
-the primary target) and full-overwrite (`cp -f`, `dd`-overwrite,
-restore-from-backup). It intentionally excludes the running-VM hot path:
-incremental writes already get chunk-level dedup via `GetByHash` and would
-not benefit from file-level fingerprinting that requires a quiesce.
-
-### Production call chain
-
-The end-to-end wiring. Reads bottom-up; arrows show synchronous dispatch:
-
-```
-Production call chain (per-write, on quiesce):
-
-  protocol handler (NFSv3 COMMIT, NFSv4 COMMIT, SMB CLOSE)
-    → internal/adapter/common.CommitBlockStore
-    → engine.BlockStore.Flush
-    → engine.Syncer.Flush
-        ├─[file-level dedup short-circuit]
-        │   ├─ snapshotPendingBlockRefs(payloadID)         // ListFileChunks projection
-        │   ├─ coordinator.GetFileObjectID(payloadID)      // trigger-condition check
-        │   ├─ TrySpeculativeFileLevelDedup
-        │   │   ├─ ComputeObjectID(specBlocks)
-        │   │   ├─ coordinator.FindByObjectID
-        │   │   └─ applyFileLevelDedupHit (one metadata txn):
-        │   │       ├─ IncrementRefCount on each target hash
-        │   │       ├─ coordinator.PersistFileChunks(target.Blocks, provisionalObjectID)
-        │   │       ├─ DecrementRefCount on speculative-only hashes
-        │   │       ├─ Cache.InvalidateFile(removedHashes)
-        │   │       └─ local.DeleteAppendLog(payloadID)
-        │   └─[hit] return Finalized:true (zero new CAS PUTs)
-        │
-        └─[post-Flush hook (on miss OR no trigger)]
-            ├─ drainPayloadToRemote (uploadOne per Pending block)
-            ├─ snapshotBlockRefs (every block now Remote)
-            └─ persistFileChunksAfterFlush
-                └─ ComputeObjectID(blocks)
-                └─ coordinator.PersistFileChunks(blocks, objectID)
-                    └─ runtime coordinator: WithTransaction(GetFileByPayloadID + SetManifest)
-                        // FileAttr.Blocks AND FileAttr.ObjectID
-                        // written in one metadata txn
-```
-
-Both branches finalize `FileAttr.ObjectID` inside the same metadata
-transaction that persists `FileAttr.Blocks`. The hit branch
-performs zero new CAS PUTs (donor blocks already exist remotely);
-the miss branch uploads each Pending block once via `uploadOne` and
-then runs the post-Flush hook.
-
-Source-of-truth file:line anchors:
-
-- `pkg/block/engine/sync_drain.go::Flush` — entry point + branch
-  selection; `snapshotPendingBlockRefs` (short-circuit input) and
-  `snapshotBlockRefs` (post-Flush input) helpers.
-- `pkg/block/engine/dedup.go::TrySpeculativeFileLevelDedup` and
-  `applyFileLevelDedupHit` — the metadata-side swap.
-- `pkg/block/engine/dedup.go::persistFileChunksAfterFlush` — the
-  post-Flush coordinator hook.
-- `pkg/controlplane/runtime/shares/coordinator.go::PersistFileChunks` /
-  `GetFileObjectID` — runtime forwarders.
-
-### Concurrent quiesce: first-committer-wins
-
-Two concurrent flushes of byte-identical content race independently
-(no distributed locking). At commit time the partial unique index on
-`object_id` ensures exactly one write succeeds; the loser detects the
-conflict (`metadata.ErrConflict`), decrements its just-uploaded refs, swaps to the now-
-existing target's BlockRef list, and re-commits. One wasted upload
-per loser is acceptable; GC reclaims any orphans. See
-`pkg/metadata/storetest/objectid_lookup.go` for the cross-backend
-race conformance scenarios.
-
-### Per-backend ObjectID lookup index
-
-`MetadataStore.FindByObjectID(ctx, ObjectID) ([]BlockRef, error)`
-returns `(nil, nil)` on miss; on hit returns the canonical BlockRef
-list of the matching file (per-metadata-store scope, NOT per-share).
-Badger maintains a secondary key `obj:{hex} -> file_id` inside each
-`Put`/`Delete` write batch.
-
-Zero-valued ObjectID (legacy / pre-quiesce) is excluded from the index
-— `FindByObjectID(zero)` short-circuits to `(nil, nil)` at every layer
-so partial states never trigger a false short-circuit.
-
-### Observability
-
-The dedup path emits slog-only signals:
-
-- **DEBUG**: post-Flush ObjectID persisted; short-circuit hit/miss
-  with `payloadID`, `objectID`, `donor_blocks`.
-- **INFO**: cross-VM dedup ratio emitted by the e2e fixture
-  (`test/e2e/dedup_vmfleet_test.go`, nightly).
-
-### Performance gate
-
-A CI perf lane gates random-write regression against a baseline
-(`pkg/block/engine/write_bench_test.go`). ObjectID compute is one
-BLAKE3 pass over `32×N` bytes per quiesce (sub-millisecond at N=16K
-BlockRefs); the short-circuit lookup is one indexed query per quiesce.
-Both fire off the random-write hot path.
 
 ## Migration & Block-Layout Routing
 
@@ -1479,8 +1336,8 @@ Two consequences worth knowing:
 The offline `.blk`->CAS tool (`migrate-to-cas`) shipped through v0.21 and has
 been removed. The journal format stamp (`cmd/dfs/commands/start.go`'s
 `handleFormatMismatch`) refuses a directory a newer release wrote and exits 78
-(`EX_CONFIG`); the pre-journal blobs/+logs/ guard was deleted with
-`pkg/block/local/fs` — no production stores exist in field, so opening such a
+(`EX_CONFIG`); the pre-journal blobs/+logs/ guard was deleted with the
+pre-journal local tier — no production stores exist in field, so opening such a
 directory as an empty journal is accepted. Unlike the standalone-CAS case
 above, this one is a read-time answer, not a boot refusal.
 

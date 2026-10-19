@@ -9,7 +9,7 @@ sidebar:
 
 This guide covers running DittoFS beyond a local source build: package managers, Docker,
 and the Kubernetes operator. For the quick local path (Nix / Homebrew / source build), see
-the [README](https://github.com/marmos91/dittofs/blob/v0.35.0/README.md). For configuration details, see [CONFIGURATION.md](/docs/getting-started/configuration).
+the [README](https://github.com/marmos91/dittofs/blob/v0.36.0/README.md). For configuration details, see [CONFIGURATION.md](/docs/getting-started/configuration).
 
 DittoFS ships two binaries — `dfs` (the server daemon) and `dfsctl` (the REST client).
 Most package managers install both.
@@ -198,7 +198,7 @@ scoop install dfsctl    # client CLI
 When installed via the system package managers, the server runs under systemd as the `dfs`
 service. Set the admin password before the first start with the
 `DITTOFS_ADMIN_INITIAL_PASSWORD` environment variable (see the
-[README](https://github.com/marmos91/dittofs/blob/v0.35.0/README.md#first-run--admin-password)). Under systemd the server's stdout is
+[README](https://github.com/marmos91/dittofs/blob/v0.36.0/README.md#first-run--admin-password)). Under systemd the server's stdout is
 not a terminal, so an auto-generated password would **not** be shown or written to the
 service log — pre-setting it is the only way to know the credential.
 
@@ -345,7 +345,7 @@ default. To build and deploy from source instead, point `IMG` at your own regist
 `make docker-build docker-push IMG=<your-registry>/dittofs-operator:tag` then
 `make deploy IMG=<your-registry>/dittofs-operator:tag`.
 
-See the [`k8s/dittofs-operator/`](https://github.com/marmos91/dittofs/tree/v0.35.0/k8s/dittofs-operator/) directory for the CRD reference,
+See the [`k8s/dittofs-operator/`](https://github.com/marmos91/dittofs/tree/v0.36.0/k8s/dittofs-operator/) directory for the CRD reference,
 RBAC, and Helm chart configuration.
 
 ## Uninstall
@@ -362,7 +362,7 @@ Before you start, if you plan to delete metadata stores, note their
 configuration while the server is still running:
 
 ```bash
-dfsctl store metadata list -o json   # config.path for local stores, connection settings for PostgreSQL
+dfsctl store metadata list -o json   # config.path for on-disk stores
 ```
 
 ### 1. Stop the server and unmount shares
@@ -398,7 +398,7 @@ dfs stop
 | Docker | `docker rm -f dittofs && docker rmi marmos91c/dittofs:latest` |
 | Docker Compose | `docker compose down && docker rmi dittofs:compose` |
 | Source build | delete the `dfs` and `dfsctl` binaries you built, and the clone |
-| Kubernetes operator | see the [operator uninstall guide](https://github.com/marmos91/dittofs/blob/v0.35.0/k8s/dittofs-operator/docs/INSTALL.md#uninstallation) |
+| Kubernetes operator | see the [operator uninstall guide](https://github.com/marmos91/dittofs/blob/v0.36.0/k8s/dittofs-operator/docs/INSTALL.md#uninstallation) |
 
 If you installed the Homebrew formula instead of the cask (the README
 command, without `--cask`), use
@@ -458,8 +458,8 @@ sudo systemctl daemon-reload
 
 **Everywhere:**
 
-- Local metadata stores: the BadgerDB directory or SQLite database file named
-  by the `config.path` you noted before stopping the server.
+- Local metadata stores: the BadgerDB directory named by the `config.path` you
+  noted before stopping the server.
 - `dfsctl` credentials: `~/.config/dfsctl/config.json` (Windows:
   `%APPDATA%\dfsctl\config.json`), for each user who ran `dfsctl login`.
 - Client leftovers: `~/.smbcredentials`, mount point directories, and any
@@ -477,8 +477,8 @@ The single-container setup also bind-mounts `~/.config/dittofs/config.yaml`
 from the host; remove it as shown above.
 
 **Remote storage:** data in remote block stores such as S3 buckets, and in
-externally managed PostgreSQL databases used for the control plane or for
-metadata, is not touched by any step above. Delete it on the storage side if
-you no longer need it. The Compose `postgres-backend` database is different:
-it lives in the `dittofs-postgres` volume and is deleted by
-`docker compose down -v`.
+externally managed PostgreSQL databases used for the control plane, is not
+touched by any step above. Delete it on the storage side if you no longer need
+it. A PostgreSQL or SQLite metadata store left by an older version is not
+touched either; to move its shares to BadgerDB, see
+[Metadata store migration](https://github.com/marmos91/dittofs/blob/v0.36.0/docs/guide/metadata-store-migration.md).
