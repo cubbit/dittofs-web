@@ -1,7 +1,7 @@
 ---
 title: "Architecture"
 description: "How DittoFS is put together: adapters, the runtime control plane, and pluggable stores."
-editUrl: "https://github.com/marmos91/dittofs/edit/develop/docs/internals/architecture.md"
+editUrl: "https://github.com/cubbit/dittofs/edit/develop/docs/internals/architecture.md"
 sidebar:
   order: 1
 # Synced from dittofs/docs/internals/architecture.md — do not edit here.
@@ -239,7 +239,7 @@ hashing, or upload on the client path. A background carve pass later packs the
 accumulated dirty ranges into remote blocks (see below). How durable the ack is
 depends on the share's commit acknowledgement (`journal` or `block-store`) and on
 whether its metadata commit is relaxed — two independent axes, see the
-[durability guide](https://github.com/marmos91/dittofs/blob/v0.36.0/docs/guide/durability.md).
+[durability guide](https://github.com/cubbit/dittofs/blob/v0.36.0/docs/guide/durability.md).
 
 **Eviction**:
 - Cache: LRU eviction when the RAM budget is reached. No data loss (the journal still holds the bytes). The cache is per-share but cross-file inside a share — the same content hash referenced by two files shares one entry.
@@ -539,7 +539,7 @@ Mark is idempotent, so resume-on-restart is intentionally not built.
 - **Periodic** via the background scheduler, on by default. `dfs start`
   runs GC every `gc.auto_interval` (default 15m; values in (0, 1m) are
   refused) unless `gc.auto_enabled` is false. See
-  [Garbage Collection](https://github.com/marmos91/dittofs/blob/v0.36.0/docs/guide/garbage-collection.md#automatic-gc-default).
+  [Garbage Collection](https://github.com/cubbit/dittofs/blob/v0.36.0/docs/guide/garbage-collection.md#automatic-gc-default).
 - **On-demand** via `dfsctl store block gc <share> [--dry-run]`;
   `--dry-run` skips DELETEs and prints up to `gc.dry_run_sample_size`
   candidate keys (default 1000). The mark-sweep is global across every

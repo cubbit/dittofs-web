@@ -1,7 +1,7 @@
 ---
 title: SMB Protocol Internals
 description: SMB implementation details.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.4.2/docs/SMB_PROTOCOL_GUIDE.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.4.2/docs/SMB_PROTOCOL_GUIDE.md
 sidebar:
   order: 3
 slug: v0.4/docs/contributing/smb-protocol

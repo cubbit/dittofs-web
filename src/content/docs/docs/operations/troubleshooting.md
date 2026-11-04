@@ -1,7 +1,7 @@
 ---
 title: "Troubleshooting"
 description: "Common issues and how to resolve them."
-editUrl: "https://github.com/marmos91/dittofs/edit/develop/docs/guide/troubleshooting.md"
+editUrl: "https://github.com/cubbit/dittofs/edit/develop/docs/guide/troubleshooting.md"
 sidebar:
   order: 6
 # Synced from dittofs/docs/guide/troubleshooting.md — do not edit here.
@@ -306,7 +306,7 @@ ls: cannot access 'file.txt': Stale file handle
 - Server was restarted with an in-memory metadata store (handles lost)
 - File was deleted while client held a handle
 - Metadata backend was changed, for example when a share moved off a removed
-  metadata store type ([Metadata store migration](https://github.com/marmos91/dittofs/blob/v0.36.0/docs/guide/metadata-store-migration.md))
+  metadata store type ([Metadata store migration](https://github.com/cubbit/dittofs/blob/v0.36.0/docs/guide/metadata-store-migration.md))
 
 **Solutions:**
 
@@ -720,7 +720,7 @@ setfacl: Operation not supported
 
 If you're still experiencing issues:
 
-1. **Check existing issues:** [GitHub Issues](https://github.com/marmos91/dittofs/issues)
+1. **Check existing issues:** [GitHub Issues](https://github.com/cubbit/dittofs/issues)
 2. **Enable debug logging** and capture relevant output
 3. **Open a new issue** with:
    - DittoFS version

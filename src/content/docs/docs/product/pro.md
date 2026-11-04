@@ -1,7 +1,7 @@
 ---
 title: "DittoFS Pro"
 description: "The DittoFS Pro web dashboard for managing stores, shares, and adapters."
-editUrl: "https://github.com/marmos91/dittofs/edit/develop/docs/product/pro.md"
+editUrl: "https://github.com/cubbit/dittofs/edit/develop/docs/product/pro.md"
 sidebar:
   order: 1
 # Synced from dittofs/docs/product/pro.md — do not edit here.

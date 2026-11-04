@@ -1,7 +1,7 @@
 ---
 title: "Access Control"
 description: "How DittoFS models and enforces permissions and ACLs across NFS and SMB."
-editUrl: "https://github.com/marmos91/dittofs/edit/develop/docs/guide/access-control.md"
+editUrl: "https://github.com/cubbit/dittofs/edit/develop/docs/guide/access-control.md"
 sidebar:
   order: 5
 # Synced from dittofs/docs/guide/access-control.md — do not edit here.
@@ -45,7 +45,7 @@ Access to a file is decided by **two independent layers**, both of which must al
    + group SIDs** (SMB) or the Unix id the SID resolves to (NFS); the highest
    matching level wins, alongside any local grant. The share-root ACL projects a
    `sid:<SID>` ACE per grant so the filesystem layer agrees. See
-   [windows-ad-setup.md](https://github.com/marmos91/dittofs/blob/v0.36.0/docs/guide/windows-ad-setup.md) for the operator walkthrough.
+   [windows-ad-setup.md](https://github.com/cubbit/dittofs/blob/v0.36.0/docs/guide/windows-ad-setup.md) for the operator walkthrough.
 
 2. **Filesystem permissions (POSIX mode + ACL).** Once past the gate, the file's own POSIX mode bits and ACL decide the actual operation — exactly as described in the rest of this page. A share-level grant never overrides these; a user granted `read-write` on the export still cannot write a file whose mode/ACL denies them.
 

@@ -2,7 +2,7 @@ import path from "node:path";
 import { fromMarkdown } from "mdast-util-from-markdown";
 import { parse, postprocess, preprocess } from "micromark";
 
-export const GITHUB_REPO = "https://github.com/marmos91/dittofs";
+export const GITHUB_REPO = "https://github.com/cubbit/dittofs";
 
 // A checkout directory takes precedence over an archive ref as the source.
 export function docsGitRef(env = process.env) {

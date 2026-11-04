@@ -1,7 +1,7 @@
 ---
 title: SMB
 description: Serving SMB and mounting from clients.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.20.1/docs/SMB.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.20.1/docs/SMB.md
 sidebar:
   order: 2
 slug: v0.20/docs/connect/smb

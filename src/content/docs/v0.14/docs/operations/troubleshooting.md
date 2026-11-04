@@ -1,7 +1,7 @@
 ---
 title: Troubleshooting
 description: Common issues and fixes.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.14.2/docs/TROUBLESHOOTING.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.14.2/docs/TROUBLESHOOTING.md
 sidebar:
   order: 8
 slug: v0.14/docs/operations/troubleshooting
@@ -212,7 +212,7 @@ sudo -u $USER mount_smbfs //user:pass@localhost:12445/export /mnt/share
 **Note:** This is a macOS-specific issue. On Linux, `dfsctl share mount` uses uid/gid
 options which work correctly.
 
-See [Known Limitations](https://github.com/marmos91/dittofs/blob/v0.14.2/docs/KNOWN_LIMITATIONS.md#macos-mount-owner-only-access) for details.
+See [Known Limitations](https://github.com/cubbit/dittofs/blob/v0.14.2/docs/KNOWN_LIMITATIONS.md#macos-mount-owner-only-access) for details.
 
 ## Permission Issues
 
@@ -740,7 +740,7 @@ setfacl: Operation not supported
 
 If you're still experiencing issues:
 
-1. **Check existing issues:** [GitHub Issues](https://github.com/marmos91/dittofs/issues)
+1. **Check existing issues:** [GitHub Issues](https://github.com/cubbit/dittofs/issues)
 2. **Enable debug logging** and capture relevant output
 3. **Open a new issue** with:
    * DittoFS version

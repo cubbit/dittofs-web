@@ -1,7 +1,7 @@
 ---
 title: Configuration
 description: Server configuration file, environment variables, and runtime CLI examples.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.23.2/docs/guide/configuration.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.23.2/docs/guide/configuration.md
 sidebar:
   order: 3
 slug: v0.23/docs/getting-started/configuration

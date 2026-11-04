@@ -2,7 +2,7 @@
 import logo from "../assets/logo-light.svg";
 import { getStars, formatStars } from "../lib/github";
 
-const GITHUB = "https://github.com/marmos91/dittofs";
+const GITHUB = "https://github.com/cubbit/dittofs";
 const stars = formatStars(await getStars());
 const nav = [
   { label: "Features", href: "/#features" },
@@ -147,7 +147,7 @@ const nav = [
 <!-- Live GitHub star count. Build-time fetch is unreliable on CI (rate limits),
      so fill from the browser too. Fails soft: slots stay hidden if it errors. -->
 <script is:inline>
-  fetch("https://api.github.com/repos/marmos91/dittofs", {
+  fetch("https://api.github.com/repos/cubbit/dittofs", {
     headers: { Accept: "application/vnd.github+json" },
   })
     .then(function (r) {
@@ -165,7 +165,7 @@ const nav = [
     })
     .catch(function () {});
 
-  fetch("https://api.github.com/repos/marmos91/dittofs/releases/latest", {
+  fetch("https://api.github.com/repos/cubbit/dittofs/releases/latest", {
     headers: { Accept: "application/vnd.github+json" },
   })
     .then(function (r) {

@@ -1,7 +1,7 @@
 ---
 title: Identity (AD / LDAP / Kerberos)
 description: Active Directory, LDAP, Kerberos, and NTLM integration.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.25.1/docs/guide/identity.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.25.1/docs/guide/identity.md
 sidebar:
   order: 4
 slug: v0.25/docs/connect/identity
@@ -28,7 +28,7 @@ cross-protocol ACL/SID model).
 
 > **Joining a real Windows Server AD?** For an end-to-end operator runbook
 > (`ktpass` keytab, LDAP, granting AD users/groups directly, and per-user
-> "mount on login"), see [windows-ad-setup.md](https://github.com/marmos91/dittofs/blob/v0.25.1/docs/guide/windows-ad-setup.md). This page
+> "mount on login"), see [windows-ad-setup.md](https://github.com/cubbit/dittofs/blob/v0.25.1/docs/guide/windows-ad-setup.md). This page
 > is the reference for every provider field; that page is the step-by-step.
 
 ***
@@ -350,7 +350,7 @@ on PAC SIDs) and NFS (matched on the Unix id the SID resolves to — the RID und
 `idmap: rid`, so grant by name or use `idmap: rid` for an NFS-matchable id). This
 is the Samba `idmap_rid`-style, no-shadow-users model. For the full Windows
 Server walkthrough including per-user "mount on login", see
-[windows-ad-setup.md](https://github.com/marmos91/dittofs/blob/v0.25.1/docs/guide/windows-ad-setup.md); for the ACE model, see
+[windows-ad-setup.md](https://github.com/cubbit/dittofs/blob/v0.25.1/docs/guide/windows-ad-setup.md); for the ACE model, see
 [access-control.md](/v0.25/docs/connect/access-control).
 
 ***

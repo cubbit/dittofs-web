@@ -1,7 +1,7 @@
 ---
 title: FAQ
 description: Frequently asked questions.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.3.4/docs/FAQ.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.3.4/docs/FAQ.md
 sidebar:
   order: 10
 slug: v0.3/docs/operations/faq
@@ -80,7 +80,7 @@ Absolutely! Implement either or both of these interfaces:
 * **Metadata Store**: `pkg/metadata/Store` interface
 * **Content Store**: `pkg/blocks/Store` interface
 
-See [CONTRIBUTING.md](https://github.com/marmos91/dittofs/blob/v0.3.4/docs/CONTRIBUTING.md) for implementation guidelines.
+See [CONTRIBUTING.md](https://github.com/cubbit/dittofs/blob/v0.3.4/docs/CONTRIBUTING.md) for implementation guidelines.
 
 ### How does performance compare to kernel NFS?
 
@@ -299,6 +299,6 @@ Both are NFS implementations in Go, but with different goals:
 ## Still Have Questions?
 
 * Check the other documentation in [docs/](.)
-* Search [existing GitHub issues](https://github.com/marmos91/dittofs/issues)
-* Open a [new issue](https://github.com/marmos91/dittofs/issues/new) for bugs or feature requests
-* Review [CLAUDE.md](https://github.com/marmos91/dittofs/blob/v0.3.4/CLAUDE.md) for detailed development guidance
+* Search [existing GitHub issues](https://github.com/cubbit/dittofs/issues)
+* Open a [new issue](https://github.com/cubbit/dittofs/issues/new) for bugs or feature requests
+* Review [CLAUDE.md](https://github.com/cubbit/dittofs/blob/v0.3.4/CLAUDE.md) for detailed development guidance

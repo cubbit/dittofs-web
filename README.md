@@ -1,6 +1,6 @@
 # dittofs-web
 
-Marketing site and documentation for [DittoFS](https://github.com/marmos91/dittofs),
+Marketing site and documentation for [DittoFS](https://github.com/cubbit/dittofs),
 served at **dittofs.io**.
 
 Built with [Astro](https://astro.build) (static), [Starlight](https://starlight.astro.build)

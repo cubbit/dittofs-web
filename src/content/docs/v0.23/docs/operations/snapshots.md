@@ -1,7 +1,7 @@
 ---
 title: Snapshots
 description: Point-in-time share snapshots, restore runbook, and recovery.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.23.2/docs/guide/snapshots.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.23.2/docs/guide/snapshots.md
 sidebar:
   order: 1
 slug: v0.23/docs/operations/snapshots

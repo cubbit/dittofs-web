@@ -1,7 +1,7 @@
 ---
 title: NFS
 description: Serving NFSv3/4.0/4.1 and mounting from Linux and macOS.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.22.0/docs/guide/nfs.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.22.0/docs/guide/nfs.md
 sidebar:
   order: 1
 slug: v0.22/docs/connect/nfs

@@ -1,7 +1,7 @@
 ---
 title: Security Model
 description: Internal authentication, authorization, and squashing model.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.31.1/docs/internals/security-model.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.31.1/docs/internals/security-model.md
 sidebar:
   order: 5
 slug: v0.31/docs/contributing/security-model

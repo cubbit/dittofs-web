@@ -1,7 +1,7 @@
 ---
 title: Choosing Stores
 description: Pick the right metadata and block stores for your workload.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.25.1/docs/guide/choosing-stores.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.25.1/docs/guide/choosing-stores.md
 sidebar:
   order: 4
 slug: v0.25/docs/getting-started/choosing-stores

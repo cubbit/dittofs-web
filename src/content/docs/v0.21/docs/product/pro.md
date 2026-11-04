@@ -1,7 +1,7 @@
 ---
 title: DittoFS Pro
 description: DittoFS Pro.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.21.0/docs/PRO.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.21.0/docs/PRO.md
 sidebar:
   order: 1
 slug: v0.21/docs/product/pro

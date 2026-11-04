@@ -1,7 +1,7 @@
 ---
 title: "Snapshots"
 description: "Point-in-time share snapshots, restore runbook, and recovery."
-editUrl: "https://github.com/marmos91/dittofs/edit/develop/docs/guide/snapshots.md"
+editUrl: "https://github.com/cubbit/dittofs/edit/develop/docs/guide/snapshots.md"
 sidebar:
   order: 1
 # Synced from dittofs/docs/guide/snapshots.md — do not edit here.

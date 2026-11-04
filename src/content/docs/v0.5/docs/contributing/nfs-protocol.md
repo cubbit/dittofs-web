@@ -1,7 +1,7 @@
 ---
 title: NFS Protocol Internals
 description: NFS implementation details.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.5.1/docs/NFS_PROTOCOL_GUIDE.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.5.1/docs/NFS_PROTOCOL_GUIDE.md
 sidebar:
   order: 2
 slug: v0.5/docs/contributing/nfs-protocol

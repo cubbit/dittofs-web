@@ -1,7 +1,7 @@
 ---
 title: "SMB"
 description: "SMB2/3 dialects, encryption, signing, leases, durable handles, and client usage."
-editUrl: "https://github.com/marmos91/dittofs/edit/develop/docs/guide/smb.md"
+editUrl: "https://github.com/cubbit/dittofs/edit/develop/docs/guide/smb.md"
 sidebar:
   order: 2
 # Synced from dittofs/docs/guide/smb.md — do not edit here.

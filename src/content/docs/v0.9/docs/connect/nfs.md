@@ -1,7 +1,7 @@
 ---
 title: NFS
 description: Serving NFS and mounting from clients.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.9.9/docs/NFS.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.9.9/docs/NFS.md
 sidebar:
   order: 1
 slug: v0.9/docs/connect/nfs

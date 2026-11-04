@@ -2,7 +2,7 @@
 title: Architecture
 description: "How DittoFS is put together: adapters, the runtime control plane,
   and pluggable stores."
-editUrl: https://github.com/marmos91/dittofs/edit/v0.31.1/docs/internals/architecture.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.31.1/docs/internals/architecture.md
 sidebar:
   order: 1
 slug: v0.31/docs/contributing/architecture
@@ -256,7 +256,7 @@ and acknowledges immediately (write-back) — there is no synchronous chunking,
 hashing, or upload on the client path. A background carve pass later packs the
 accumulated dirty ranges into remote blocks (see below). How durable the ack is
 depends on the configured durability tier (`writeback` / `local-durable` /
-`remote`; see the [durability guide](https://github.com/marmos91/dittofs/blob/v0.31.1/docs/guide/durability.md)).
+`remote`; see the [durability guide](https://github.com/cubbit/dittofs/blob/v0.31.1/docs/guide/durability.md)).
 
 **Eviction**:
 

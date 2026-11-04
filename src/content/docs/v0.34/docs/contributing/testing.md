@@ -1,7 +1,7 @@
 ---
 title: Testing
 description: Unit, integration, conformance, and end-to-end testing.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.34.0/docs/internals/testing.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.34.0/docs/internals/testing.md
 sidebar:
   order: 8
 slug: v0.34/docs/contributing/testing
@@ -12,7 +12,7 @@ covers Windows VM setup, manual SMB and NFS validation checklists, and the WPTS 
 conformance suites.
 
 For Go unit/integration tests and the e2e test runner, see
-[`./contributing.md`](https://github.com/marmos91/dittofs/blob/v0.34.0/docs/internals/contributing.md).
+[`./contributing.md`](https://github.com/cubbit/dittofs/blob/v0.34.0/docs/internals/contributing.md).
 
 For the end-user guide to connecting a Windows client, see
 [`../guide/windows.md`](/v0.34/docs/connect/windows).
@@ -403,21 +403,21 @@ in `test/conformance/suites.json`:
 
 | Suite | Protocol | Profiles | Variants | Presubmit | Known failures |
 |---|---|---|---|---|---|
-| `wpts` | SMB | `memory`, `badger`, `badger-s3`, `postgres-s3` | — | `memory`, `postgres-s3` | [`test/smb-conformance/KNOWN_FAILURES.md`](https://github.com/marmos91/dittofs/blob/v0.34.0/test/smb-conformance/KNOWN_FAILURES.md) |
-| `smbtorture` | SMB | `memory`, `badger`, `sqlite`, `postgres` | — | `memory`, `badger` | [`test/smb-conformance/smbtorture/KNOWN_FAILURES.md`](https://github.com/marmos91/dittofs/blob/v0.34.0/test/smb-conformance/smbtorture/KNOWN_FAILURES.md) |
-| `pjdfstest` | NFS | `memory`, `badger`, `postgres`, `postgres-s3` | `3`, `4`, `4.1` | `memory`, `postgres-s3` | [`test/posix/KNOWN_FAILURES.md`](https://github.com/marmos91/dittofs/blob/v0.34.0/test/posix/KNOWN_FAILURES.md), [`test/posix/KNOWN_FAILURES_V4.md`](https://github.com/marmos91/dittofs/blob/v0.34.0/test/posix/KNOWN_FAILURES_V4.md) |
+| `wpts` | SMB | `memory`, `badger`, `badger-s3`, `postgres-s3` | — | `memory`, `postgres-s3` | [`test/smb-conformance/KNOWN_FAILURES.md`](https://github.com/cubbit/dittofs/blob/v0.34.0/test/smb-conformance/KNOWN_FAILURES.md) |
+| `smbtorture` | SMB | `memory`, `badger`, `sqlite`, `postgres` | — | `memory`, `badger` | [`test/smb-conformance/smbtorture/KNOWN_FAILURES.md`](https://github.com/cubbit/dittofs/blob/v0.34.0/test/smb-conformance/smbtorture/KNOWN_FAILURES.md) |
+| `pjdfstest` | NFS | `memory`, `badger`, `postgres`, `postgres-s3` | `3`, `4`, `4.1` | `memory`, `postgres-s3` | [`test/posix/KNOWN_FAILURES.md`](https://github.com/cubbit/dittofs/blob/v0.34.0/test/posix/KNOWN_FAILURES.md), [`test/posix/KNOWN_FAILURES_V4.md`](https://github.com/cubbit/dittofs/blob/v0.34.0/test/posix/KNOWN_FAILURES_V4.md) |
 | `nfs-kerberos` | NFS | `memory-kerberos` | — | `memory-kerberos` | — |
-| `pynfs` | NFS | `memory`, `badger`, `postgres`, `postgres-s3` | `4.0`, `4.1` | `memory`, `postgres-s3` | [`test/nfs-conformance/pynfs/KNOWN_FAILURES_V40.md`](https://github.com/marmos91/dittofs/blob/v0.34.0/test/nfs-conformance/pynfs/KNOWN_FAILURES_V40.md), [`test/nfs-conformance/pynfs/KNOWN_FAILURES_V41.md`](https://github.com/marmos91/dittofs/blob/v0.34.0/test/nfs-conformance/pynfs/KNOWN_FAILURES_V41.md) |
+| `pynfs` | NFS | `memory`, `badger`, `postgres`, `postgres-s3` | `4.0`, `4.1` | `memory`, `postgres-s3` | [`test/nfs-conformance/pynfs/KNOWN_FAILURES_V40.md`](https://github.com/cubbit/dittofs/blob/v0.34.0/test/nfs-conformance/pynfs/KNOWN_FAILURES_V40.md), [`test/nfs-conformance/pynfs/KNOWN_FAILURES_V41.md`](https://github.com/cubbit/dittofs/blob/v0.34.0/test/nfs-conformance/pynfs/KNOWN_FAILURES_V41.md) |
 
 Tiering, profiles and blacklists come from
-[`test/conformance/suites.json`](https://github.com/marmos91/dittofs/blob/v0.34.0/test/conformance/suites.json); every suite runs through
-[`test/conformance/run.sh`](https://github.com/marmos91/dittofs/blob/v0.34.0/test/conformance/run.sh).
+[`test/conformance/suites.json`](https://github.com/cubbit/dittofs/blob/v0.34.0/test/conformance/suites.json); every suite runs through
+[`test/conformance/run.sh`](https://github.com/cubbit/dittofs/blob/v0.34.0/test/conformance/run.sh).
 
 ### WPTS (Windows Protocol Test Suites)
 
 * **Suite:** MS-SMB2 BVT (Build Verification Tests)
 * **Known failures:** see
-  [`../../test/smb-conformance/KNOWN_FAILURES.md`](https://github.com/marmos91/dittofs/blob/v0.34.0/test/smb-conformance/KNOWN_FAILURES.md)
+  [`../../test/smb-conformance/KNOWN_FAILURES.md`](https://github.com/cubbit/dittofs/blob/v0.34.0/test/smb-conformance/KNOWN_FAILURES.md)
 * **Run locally:**
   ```bash
   cd test/smb-conformance
@@ -430,7 +430,7 @@ Tiering, profiles and blacklists come from
 * **Suite:** Full SMB2 test suite (`smb2.*`)
 * **Image:** `quay.io/samba.org/samba-toolbox:v0.8`
 * **Known failures:** see
-  [`../../test/smb-conformance/smbtorture/KNOWN_FAILURES.md`](https://github.com/marmos91/dittofs/blob/v0.34.0/test/smb-conformance/smbtorture/KNOWN_FAILURES.md)
+  [`../../test/smb-conformance/smbtorture/KNOWN_FAILURES.md`](https://github.com/cubbit/dittofs/blob/v0.34.0/test/smb-conformance/smbtorture/KNOWN_FAILURES.md)
 * **Run locally:**
   ```bash
   cd test/smb-conformance
@@ -457,9 +457,9 @@ through a kernel client, which only ever sends the subset of the protocol it nee
 
 * **Suite:** pynfs NFSv4.0 (689 tests) and NFSv4.1 (269 tests)
 * **Known failures:** see
-  [`../../test/nfs-conformance/pynfs/KNOWN_FAILURES_V40.md`](https://github.com/marmos91/dittofs/blob/v0.34.0/test/nfs-conformance/pynfs/KNOWN_FAILURES_V40.md)
-  and [`KNOWN_FAILURES_V41.md`](https://github.com/marmos91/dittofs/blob/v0.34.0/test/nfs-conformance/pynfs/KNOWN_FAILURES_V41.md)
-* **Baseline:** [`baseline-knfsd.md`](https://github.com/marmos91/dittofs/blob/v0.34.0/test/nfs-conformance/pynfs/baseline-knfsd.md) —
+  [`../../test/nfs-conformance/pynfs/KNOWN_FAILURES_V40.md`](https://github.com/cubbit/dittofs/blob/v0.34.0/test/nfs-conformance/pynfs/KNOWN_FAILURES_V40.md)
+  and [`KNOWN_FAILURES_V41.md`](https://github.com/cubbit/dittofs/blob/v0.34.0/test/nfs-conformance/pynfs/KNOWN_FAILURES_V41.md)
+* **Baseline:** [`baseline-knfsd.md`](https://github.com/cubbit/dittofs/blob/v0.34.0/test/nfs-conformance/pynfs/baseline-knfsd.md) —
   the same suite against the Linux kernel server, which is what distinguishes an assertion
   no server satisfies from one DittoFS fails alone
 * **Run locally:**
@@ -470,7 +470,7 @@ through a kernel client, which only ever sends the subset of the protocol it nee
   ```
 
 Runs in CI via `.github/workflows/nfs-pynfs.yml` on every non-docs PR. See
-[`test/nfs-conformance/pynfs/README.md`](https://github.com/marmos91/dittofs/blob/v0.34.0/test/nfs-conformance/pynfs/README.md).
+[`test/nfs-conformance/pynfs/README.md`](https://github.com/cubbit/dittofs/blob/v0.34.0/test/nfs-conformance/pynfs/README.md).
 
 > Do not run two instances of the e2e or conformance suites concurrently — they share a Docker
 > container name and will collide. Run them serially and `docker rm -f` between runs if needed.

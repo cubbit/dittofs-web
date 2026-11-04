@@ -1,7 +1,7 @@
 ---
 title: Testing
 description: Windows testing setup.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.19.0/docs/WINDOWS_TESTING.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.19.0/docs/WINDOWS_TESTING.md
 sidebar:
   order: 7
 slug: v0.19/docs/contributing/testing
@@ -343,7 +343,7 @@ DittoFS is validated against two industry-standard conformance test suites.
 ### WPTS (Microsoft WindowsProtocolTestSuites)
 
 * **Suite:** MS-SMB2 BVT (Build Verification Tests)
-* **Known failures:** See [test/smb-conformance/KNOWN\_FAILURES.md](https://github.com/marmos91/dittofs/blob/v0.19.0/test/smb-conformance/KNOWN_FAILURES.md)
+* **Known failures:** See [test/smb-conformance/KNOWN\_FAILURES.md](https://github.com/cubbit/dittofs/blob/v0.19.0/test/smb-conformance/KNOWN_FAILURES.md)
 * **Run locally:**
   ```bash
   cd test/smb-conformance
@@ -355,7 +355,7 @@ DittoFS is validated against two industry-standard conformance test suites.
 
 * **Suite:** Full SMB2 test suite (`smb2.*`)
 * **Image:** quay.io/samba.org/samba-toolbox:v0.8
-* **Known failures:** See [test/smb-conformance/smbtorture/KNOWN\_FAILURES.md](https://github.com/marmos91/dittofs/blob/v0.19.0/test/smb-conformance/smbtorture/KNOWN_FAILURES.md)
+* **Known failures:** See [test/smb-conformance/smbtorture/KNOWN\_FAILURES.md](https://github.com/cubbit/dittofs/blob/v0.19.0/test/smb-conformance/smbtorture/KNOWN_FAILURES.md)
 * **Run locally:**
   ```bash
   cd test/smb-conformance

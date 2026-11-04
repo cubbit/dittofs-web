@@ -1,7 +1,7 @@
 ---
 title: Implementing Stores
 description: Writing a metadata or block store.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.15.0/docs/IMPLEMENTING_STORES.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.15.0/docs/IMPLEMENTING_STORES.md
 sidebar:
   order: 4
 slug: v0.15/docs/contributing/implementing-stores
@@ -322,7 +322,7 @@ Metadata backends MUST persist a `block_layout` field on the share
 record. The field is a `metadata.BlockLayout` enum (string-shaped on
 the wire) with values `legacy` or `cas-only`. Plan 14-01 introduced
 the field as part of the v0.15.0 milestone (Phase 14 / A5;
-[#425](https://github.com/marmos91/dittofs/issues/425)).
+[#425](https://github.com/cubbit/dittofs/issues/425)).
 
 ```go
 // pkg/metadata/types.go
@@ -357,7 +357,7 @@ round-trip and update semantics. New backends MUST invoke it from
 their per-backend test file:
 
 ```go
-import "github.com/marmos91/dittofs/pkg/metadata/storetest"
+import "github.com/cubbit/dittofs/pkg/metadata/storetest"
 
 func TestBlockLayoutConformance(t *testing.T) {
     storetest.RunBlockLayoutSuite(t, factoryFunc)
@@ -519,7 +519,7 @@ package mylocal_test
 
 import (
     "testing"
-    "github.com/marmos91/dittofs/pkg/blockstore/local/localtest"
+    "github.com/cubbit/dittofs/pkg/blockstore/local/localtest"
 )
 
 func TestMyLocalStore(t *testing.T) {
@@ -699,7 +699,7 @@ package myremote_test
 
 import (
     "testing"
-    "github.com/marmos91/dittofs/pkg/blockstore/remote/remotetest"
+    "github.com/cubbit/dittofs/pkg/blockstore/remote/remotetest"
 )
 
 func TestMyRemoteStore(t *testing.T) {

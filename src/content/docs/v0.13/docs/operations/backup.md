@@ -1,7 +1,7 @@
 ---
 title: Backup
 description: Backing up DittoFS.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.13.0/docs/BACKUP.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.13.0/docs/BACKUP.md
 sidebar:
   order: 6
 slug: v0.13/docs/operations/backup

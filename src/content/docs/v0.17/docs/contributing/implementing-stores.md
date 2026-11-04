@@ -1,7 +1,7 @@
 ---
 title: Implementing Stores
 description: Writing a metadata or block store.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.17.0/docs/IMPLEMENTING_STORES.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.17.0/docs/IMPLEMENTING_STORES.md
 sidebar:
   order: 4
 slug: v0.17/docs/contributing/implementing-stores
@@ -346,7 +346,7 @@ round-trip and update semantics. New backends MUST invoke it from
 their per-backend test file:
 
 ```go
-import "github.com/marmos91/dittofs/pkg/metadata/storetest"
+import "github.com/cubbit/dittofs/pkg/metadata/storetest"
 
 func TestBlockLayoutConformance(t *testing.T) {
     storetest.RunBlockLayoutSuite(t, factoryFunc)
@@ -495,7 +495,7 @@ package mylocal_test
 
 import (
     "testing"
-    "github.com/marmos91/dittofs/pkg/blockstore/local/localtest"
+    "github.com/cubbit/dittofs/pkg/blockstore/local/localtest"
 )
 
 func TestMyLocalStore(t *testing.T) {
@@ -671,7 +671,7 @@ package myremote_test
 
 import (
     "testing"
-    "github.com/marmos91/dittofs/pkg/blockstore/remote/remotetest"
+    "github.com/cubbit/dittofs/pkg/blockstore/remote/remotetest"
 )
 
 func TestMyRemoteStore(t *testing.T) {

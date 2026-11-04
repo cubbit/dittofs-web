@@ -1,7 +1,7 @@
 ---
 title: NFS Protocol Internals
 description: Internal design of the NFS adapter and dispatch path.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.27.0/docs/internals/nfs-protocol.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.27.0/docs/internals/nfs-protocol.md
 sidebar:
   order: 2
 slug: v0.27/docs/contributing/nfs-protocol
@@ -421,8 +421,8 @@ NFSv4.2 extends v4.1 with sparse file operations (RFC 7862: ALLOCATE, DEALLOCATE
 |-----------|--------|-------|
 | ALLOCATE | Implemented | Space pre-allocation via block store |
 | DEALLOCATE | Implemented | Punch holes in content-addressed/dedup-safe way via `pkg/block` |
-| SEEK | Implemented | SEEK\_HOLE and SEEK\_DATA ([#1303](https://github.com/marmos91/dittofs/issues/1303)) — returns `NFS4_CONTENT_HOLE` for unwritten regions ([#1304](https://github.com/marmos91/dittofs/issues/1304)) |
-| READ\_PLUS | Implemented | Returns data segments and hole descriptors; integrates with block storage ([#1305](https://github.com/marmos91/dittofs/issues/1305)) |
+| SEEK | Implemented | SEEK\_HOLE and SEEK\_DATA ([#1303](https://github.com/cubbit/dittofs/issues/1303)) — returns `NFS4_CONTENT_HOLE` for unwritten regions ([#1304](https://github.com/cubbit/dittofs/issues/1304)) |
+| READ\_PLUS | Implemented | Returns data segments and hole descriptors; integrates with block storage ([#1305](https://github.com/cubbit/dittofs/issues/1305)) |
 
 CLONE (reflink) **is** supported. Inter-server COPY (OP\_COPY) is **not** — it returns `NFS4ERR_NOTSUPP`.
 

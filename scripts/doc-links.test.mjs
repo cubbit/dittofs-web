@@ -105,8 +105,8 @@ test("sync writes matching edit/fallback refs and copies assets", async (t) => {
     stdio: "pipe",
   });
   const result = await fs.readFile(path.join(root, "src/content/docs/docs/getting-started/getting-started.md"), "utf8");
-  assert.match(result, /editUrl: "https:\/\/github.com\/marmos91\/dittofs\/edit\/v0\.22\.0\/docs\/guide\/getting-started\.md"/);
-  assert.match(result, /\[run\]\(https:\/\/github.com\/marmos91\/dittofs\/blob\/v0\.22\.0\/test\/run\.sh\)/);
+  assert.match(result, /editUrl: "https:\/\/github.com\/cubbit\/dittofs\/edit\/v0\.22\.0\/docs\/guide\/getting-started\.md"/);
+  assert.match(result, /\[run\]\(https:\/\/github.com\/cubbit\/dittofs\/blob\/v0\.22\.0\/test\/run\.sh\)/);
   assert.ok(result.includes("```md\n[example](../../test/run.sh)\n```"));
   assert.equal(await fs.readFile(path.join(root, "public/docs-assets/diagram.png"), "utf8"), "image fixture");
   assert.deepEqual(JSON.parse(await fs.readFile(path.join(root, "src/data/latest-docs.json"), "utf8")), { ref: "v0.22.0" });

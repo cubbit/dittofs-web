@@ -1,7 +1,7 @@
 ---
 title: "FAQ"
 description: "Frequently asked questions about features, storage, and protocols."
-editUrl: "https://github.com/marmos91/dittofs/edit/develop/docs/guide/faq.md"
+editUrl: "https://github.com/cubbit/dittofs/edit/develop/docs/guide/faq.md"
 sidebar:
   order: 7
 # Synced from dittofs/docs/guide/faq.md — do not edit here.
@@ -159,7 +159,7 @@ It depends on how the `badger` metadata store is configured:
 `badger` is the only metadata store type. A store row still naming `memory`,
 `sqlite` or `postgres` fails with `unsupported metadata store type "&lt;x&gt;": badger is
 the only metadata store type`; see the
-[metadata store migration guide](https://github.com/marmos91/dittofs/blob/v0.36.0/docs/guide/metadata-store-migration.md). A distributed transactional
+[metadata store migration guide](https://github.com/cubbit/dittofs/blob/v0.36.0/docs/guide/metadata-store-migration.md). A distributed transactional
 key-value store (TiKV preferred) is the planned backend for multi-node deployments;
 it is not implemented yet.
 
@@ -216,7 +216,7 @@ Triggers:
 
 - Periodic, on by default. The server runs GC every `gc.auto_interval`
   (default 15m; values in (0, 1m) are refused) unless `gc.auto_enabled` is
-  false. See [Garbage Collection](https://github.com/marmos91/dittofs/blob/v0.36.0/docs/guide/garbage-collection.md#automatic-gc-default).
+  false. See [Garbage Collection](https://github.com/cubbit/dittofs/blob/v0.36.0/docs/guide/garbage-collection.md#automatic-gc-default).
   A scheduled run reports in the server log only; `gc-status` shows the last
   on-demand run.
 - On-demand via `dfsctl store block gc <share> [--dry-run]`. Inspect the
@@ -795,7 +795,7 @@ See `test/posix/KNOWN_FAILURES.md` for the complete list with detailed explanati
 
 ## Still Have Questions?
 
-- Check the other documentation in [docs/](https://github.com/marmos91/dittofs/tree/v0.36.0/docs/guide)
-- Search [existing GitHub issues](https://github.com/marmos91/dittofs/issues)
-- Open a [new issue](https://github.com/marmos91/dittofs/issues/new) for bugs or feature requests
-- Review [CLAUDE.md](https://github.com/marmos91/dittofs/blob/v0.36.0/CLAUDE.md) for detailed development guidance
+- Check the other documentation in [docs/](https://github.com/cubbit/dittofs/tree/v0.36.0/docs/guide)
+- Search [existing GitHub issues](https://github.com/cubbit/dittofs/issues)
+- Open a [new issue](https://github.com/cubbit/dittofs/issues/new) for bugs or feature requests
+- Review [CLAUDE.md](https://github.com/cubbit/dittofs/blob/v0.36.0/CLAUDE.md) for detailed development guidance

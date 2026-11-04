@@ -1,7 +1,7 @@
 ---
 title: Snapshots
 description: Share snapshots.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.17.0/docs/SNAPSHOTS.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.17.0/docs/SNAPSHOTS.md
 sidebar:
   order: 1
 slug: v0.17/docs/operations/snapshots

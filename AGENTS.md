@@ -1,6 +1,6 @@
 # dittofs-web — AI Agents
 
-Marketing site and documentation for [DittoFS](https://github.com/marmos91/dittofs),
+Marketing site and documentation for [DittoFS](https://github.com/cubbit/dittofs),
 served at **dittofs.io**. Build, dev and docs-sync commands live in `README.md`.
 
 ## Git & PRs

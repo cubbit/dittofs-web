@@ -1,7 +1,7 @@
 ---
 title: SMB
 description: Serving SMB and mounting from clients.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.6.2/docs/SMB.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.6.2/docs/SMB.md
 sidebar:
   order: 2
 slug: v0.6/docs/connect/smb
@@ -606,7 +606,7 @@ See the plan file for detailed symlink interoperability design.
 
 ## Roadmap
 
-See [SMB\_IMPLEMENTATION\_PLAN.md](https://github.com/marmos91/dittofs/blob/v0.6.2/docs/SMB_IMPLEMENTATION_PLAN.md) for detailed roadmap:
+See [SMB\_IMPLEMENTATION\_PLAN.md](https://github.com/cubbit/dittofs/blob/v0.6.2/docs/SMB_IMPLEMENTATION_PLAN.md) for detailed roadmap:
 
 1. **SMBv3 Support**: Encryption, multichannel
 2. **Leases**: SMB2.1+ directory leases for better caching

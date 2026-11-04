@@ -1,7 +1,7 @@
 ---
 title: NFS
 description: Serving NFS and mounting from clients.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.21.0/docs/NFS.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.21.0/docs/NFS.md
 sidebar:
   order: 1
 slug: v0.21/docs/connect/nfs
@@ -596,11 +596,11 @@ plumbing. They are **not yet implemented**.
 | SETXATTR | Implemented | RFC 8276; `CREATE` / `REPLACE` / `EITHER` options honored |
 | LISTXATTRS | Implemented | RFC 8276; cookie-based pagination |
 | REMOVEXATTR | Implemented | RFC 8276 |
-| CLONE | Planned | reflink over dedup block refs ([#1302](https://github.com/marmos91/dittofs/issues/1302)) |
-| SEEK | Planned | SEEK\_HOLE / SEEK\_DATA ([#1303](https://github.com/marmos91/dittofs/issues/1303)) |
-| READ\_PLUS | Planned | hole-aware read ([#1304](https://github.com/marmos91/dittofs/issues/1304)) |
-| DEALLOCATE | Planned | punch-hole + storage reclaim ([#1305](https://github.com/marmos91/dittofs/issues/1305)) |
-| ALLOCATE | Planned | `fallocate` preallocation ([#1306](https://github.com/marmos91/dittofs/issues/1306)) |
+| CLONE | Planned | reflink over dedup block refs ([#1302](https://github.com/cubbit/dittofs/issues/1302)) |
+| SEEK | Planned | SEEK\_HOLE / SEEK\_DATA ([#1303](https://github.com/cubbit/dittofs/issues/1303)) |
+| READ\_PLUS | Planned | hole-aware read ([#1304](https://github.com/cubbit/dittofs/issues/1304)) |
+| DEALLOCATE | Planned | punch-hole + storage reclaim ([#1305](https://github.com/cubbit/dittofs/issues/1305)) |
+| ALLOCATE | Planned | `fallocate` preallocation ([#1306](https://github.com/cubbit/dittofs/issues/1306)) |
 | COPY / OFFLOAD\_\* / COPY\_NOTIFY | Not planned | async server-side copy; `CLONE` covers the intra-server case more cheaply |
 | IO\_ADVISE | Not planned | cache/prefetch hints; low value for a userspace vFS |
 | Labeled NFS (`FATTR4_SEC_LABEL`) | Not planned | MAC/SELinux labels; niche |

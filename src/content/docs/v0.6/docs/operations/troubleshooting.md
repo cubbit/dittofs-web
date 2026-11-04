@@ -1,7 +1,7 @@
 ---
 title: Troubleshooting
 description: Common issues and fixes.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.6.2/docs/TROUBLESHOOTING.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.6.2/docs/TROUBLESHOOTING.md
 sidebar:
   order: 8
 slug: v0.6/docs/operations/troubleshooting
@@ -485,7 +485,7 @@ shares:
 
 If you're still experiencing issues:
 
-1. **Check existing issues:** [GitHub Issues](https://github.com/marmos91/dittofs/issues)
+1. **Check existing issues:** [GitHub Issues](https://github.com/cubbit/dittofs/issues)
 2. **Enable debug logging** and capture relevant output
 3. **Open a new issue** with:
    * DittoFS version

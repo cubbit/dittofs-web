@@ -1,7 +1,7 @@
 ---
 title: Implementing Stores
 description: Writing a metadata or block store.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.1.0/docs/IMPLEMENTING_STORES.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.1.0/docs/IMPLEMENTING_STORES.md
 sidebar:
   order: 4
 slug: v0.1/docs/contributing/implementing-stores
@@ -135,7 +135,7 @@ import (
     "sync"
 
     lru "github.com/hashicorp/golang-lru/v2"
-    "github.com/marmos91/dittofs/pkg/store/metadata"
+    "github.com/cubbit/dittofs/pkg/store/metadata"
 )
 
 // MyMetadataStore implements metadata.MetadataStore.
@@ -711,8 +711,8 @@ import (
     "io"
     "sync"
 
-    "github.com/marmos91/dittofs/pkg/store/content"
-    "github.com/marmos91/dittofs/pkg/store/metadata"
+    "github.com/cubbit/dittofs/pkg/store/content"
+    "github.com/cubbit/dittofs/pkg/store/metadata"
 )
 
 // MyContentStore implements content.ContentStore.
@@ -1310,7 +1310,7 @@ package mystore_test
 import (
     "testing"
 
-    "github.com/marmos91/dittofs/pkg/store/metadata/testing"
+    "github.com/cubbit/dittofs/pkg/store/metadata/testing"
     "github.com/yourorg/dittofs-mystore"
 )
 
@@ -1348,7 +1348,7 @@ package mystore_test
 import (
     "testing"
 
-    "github.com/marmos91/dittofs/pkg/store/content/testing"
+    "github.com/cubbit/dittofs/pkg/store/content/testing"
     "github.com/yourorg/dittofs-mystore"
 )
 

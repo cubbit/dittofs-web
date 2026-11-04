@@ -74,7 +74,7 @@ function latestDocsLabel() {
 // Canonical site URL. Overridable per-environment (preview deploys, etc.).
 const SITE = process.env.PUBLIC_SITE_URL || "https://dittofs.io";
 
-const GITHUB_REPO = "https://github.com/marmos91/dittofs";
+const GITHUB_REPO = "https://github.com/cubbit/dittofs";
 
 // https://astro.build/config
 export default defineConfig({

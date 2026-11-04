@@ -1,7 +1,7 @@
 ---
 title: Security
 description: Security model and hardening.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.4.2/docs/SECURITY.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.4.2/docs/SECURITY.md
 sidebar:
   order: 4
 slug: v0.4/docs/operations/security

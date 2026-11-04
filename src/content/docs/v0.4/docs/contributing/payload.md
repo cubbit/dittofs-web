@@ -1,7 +1,7 @@
 ---
 title: Payload
 description: Payload handling.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.4.2/docs/PAYLOAD.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.4.2/docs/PAYLOAD.md
 sidebar:
   order: 6
 slug: v0.4/docs/contributing/payload

@@ -1,7 +1,7 @@
 ---
 title: Encryption Design
 description: Internal envelope-encryption and key-management design.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.32.0/docs/internals/encryption-design.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.32.0/docs/internals/encryption-design.md
 sidebar:
   order: 6
 slug: v0.32/docs/contributing/encryption-design

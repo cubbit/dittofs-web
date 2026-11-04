@@ -35,7 +35,7 @@ jobs:
 
           # No tag given: use GitHub's latest release (never a pre-release or draft).
           if [[ -z "${REF}" ]]; then
-            REF="$(gh release view --repo marmos91/dittofs --json tagName --jq .tagName)"
+            REF="$(gh release view --repo cubbit/dittofs --json tagName --jq .tagName)"
           fi
 
           # Only accept stable tags like v0.34.0 (rejects branches and v0.35.0-rc1).
@@ -48,7 +48,7 @@ jobs:
           echo "Syncing Latest from ${REF}"
           echo "ref=${REF}" >> "$GITHUB_OUTPUT"
       - name: Clone dittofs docs
-        run: git clone --depth 1 --branch "${{ steps.ref.outputs.ref }}" https://github.com/marmos91/dittofs.git /tmp/dittofs
+        run: git clone --depth 1 --branch "${{ steps.ref.outputs.ref }}" https://github.com/cubbit/dittofs.git /tmp/dittofs
       - name: Sync docs
         run: DITTOFS_REPO_DIR=/tmp/dittofs DITTOFS_DOCS_REF="${{ steps.ref.outputs.ref }}" npm run sync-docs
       - name: Open PR on change

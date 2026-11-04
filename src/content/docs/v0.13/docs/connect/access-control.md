@@ -1,7 +1,7 @@
 ---
 title: Access Control
 description: ACLs and permissions.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.13.0/docs/ACLS.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.13.0/docs/ACLS.md
 sidebar:
   order: 5
 slug: v0.13/docs/connect/access-control

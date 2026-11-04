@@ -1,7 +1,7 @@
 ---
 title: Glossary
 description: Terms used in DittoFS.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.20.1/docs/GLOSSARY.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.20.1/docs/GLOSSARY.md
 sidebar:
   order: 11
 slug: v0.20/docs/operations/glossary

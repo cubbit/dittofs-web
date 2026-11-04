@@ -1,7 +1,7 @@
 ---
 title: "Security Model"
 description: "Internal authentication, authorization, and squashing model."
-editUrl: "https://github.com/marmos91/dittofs/edit/develop/docs/internals/security-model.md"
+editUrl: "https://github.com/cubbit/dittofs/edit/develop/docs/internals/security-model.md"
 sidebar:
   order: 5
 # Synced from dittofs/docs/internals/security-model.md — do not edit here.

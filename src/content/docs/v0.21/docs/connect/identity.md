@@ -1,7 +1,7 @@
 ---
 title: Identity (AD / LDAP / Kerberos)
 description: Directory services and Kerberos.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.21.0/docs/AD_LDAP_KERBEROS.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.21.0/docs/AD_LDAP_KERBEROS.md
 sidebar:
   order: 4
 slug: v0.21/docs/connect/identity
