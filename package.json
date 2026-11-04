@@ -24,13 +24,13 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@astrojs/react": "^5.0.7",
-    "@astrojs/starlight": "^0.39.3",
+    "@tailwindcss/vite": "^4.3.4",
+    "@astrojs/react": "^7.1.2",
+    "@astrojs/starlight": "^0.42.8",
     "@fontsource-variable/jetbrains-mono": "^5.2.8",
     "@fontsource-variable/source-sans-3": "^5.2.9",
     "@fontsource/titillium-web": "^5.2.8",
-    "@tailwindcss/postcss": "^4.3.0",
-    "astro": "^6.4.3",
+    "astro": "^7.4.5",
     "motion": "^12.40.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
@@ -40,7 +40,7 @@
     "vanilla-cookieconsent": "^3.1.0"
   },
   "overrides": {
-    "vite": "^7"
+    "vite": "^8"
   },
   "devDependencies": {
     "mdast-util-from-markdown": "^2.0.3",
