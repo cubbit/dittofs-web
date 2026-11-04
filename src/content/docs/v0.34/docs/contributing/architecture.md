@@ -2,7 +2,7 @@
 title: Architecture
 description: "How DittoFS is put together: adapters, the runtime control plane,
   and pluggable stores."
-editUrl: https://github.com/marmos91/dittofs/edit/v0.34.0/docs/internals/architecture.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.34.0/docs/internals/architecture.md
 sidebar:
   order: 1
 slug: v0.34/docs/contributing/architecture
@@ -254,7 +254,7 @@ hashing, or upload on the client path. A background carve pass later packs the
 accumulated dirty ranges into remote blocks (see below). How durable the ack is
 depends on the share's commit acknowledgement (`journal` or `block-store`) and on
 whether its metadata commit is relaxed — two independent axes, see the
-[durability guide](https://github.com/marmos91/dittofs/blob/v0.34.0/docs/guide/durability.md).
+[durability guide](https://github.com/cubbit/dittofs/blob/v0.34.0/docs/guide/durability.md).
 
 **Eviction**:
 

@@ -1,7 +1,7 @@
 ---
 title: CLI Reference
 description: Reference for the dfs and dfsctl commands.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.17.0/docs/CLI.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.17.0/docs/CLI.md
 sidebar:
   order: 5
 slug: v0.17/docs/getting-started/cli

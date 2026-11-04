@@ -1,7 +1,7 @@
 ---
 title: "Mount at Boot"
 description: "Make NFS and SMB mounts survive a reboot with fstab and systemd automount."
-editUrl: "https://github.com/marmos91/dittofs/edit/develop/docs/guide/persistent-mounts.md"
+editUrl: "https://github.com/cubbit/dittofs/edit/develop/docs/guide/persistent-mounts.md"
 sidebar:
   order: 3
 # Synced from dittofs/docs/guide/persistent-mounts.md — do not edit here.

@@ -1,7 +1,7 @@
 ---
 title: "ACL Design"
 description: "Internal model for access-control lists across protocols."
-editUrl: "https://github.com/marmos91/dittofs/edit/develop/docs/internals/acl-design.md"
+editUrl: "https://github.com/cubbit/dittofs/edit/develop/docs/internals/acl-design.md"
 sidebar:
   order: 4
 # Synced from dittofs/docs/internals/acl-design.md — do not edit here.

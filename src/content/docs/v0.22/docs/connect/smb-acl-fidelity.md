@@ -1,7 +1,7 @@
 ---
 title: SMB ACL Fidelity
 description: Windows-ACL / security-descriptor fidelity matrix for SMB.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.22.0/docs/guide/smb-acl-fidelity.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.22.0/docs/guide/smb-acl-fidelity.md
 sidebar:
   order: 6
 slug: v0.22/docs/connect/smb-acl-fidelity
@@ -9,7 +9,7 @@ slug: v0.22/docs/connect/smb-acl-fidelity
 
 This is the interop reference for what the DittoFS SMB Security Descriptor (SD)
 path actually round-trips, derived from the code — not from the spec. It is the
-"documented interop matrix" required by [#1228](https://github.com/marmos91/dittofs/issues/1228).
+"documented interop matrix" required by [#1228](https://github.com/cubbit/dittofs/issues/1228).
 
 For the cross-protocol ACL *model* (why NFSv4 ACEs are the canonical form, the
 evaluation algorithm, mode sync), see [Access Control](/v0.22/docs/connect/access-control). This document is
@@ -121,9 +121,9 @@ Tracked alongside the broader cross-protocol SACL gap in
 
 | Aspect | State | Notes |
 |--------|-------|-------|
-| Foreign domain SID on write | Unsupported / out of scope | A SID not in this machine's domain is not decodable to a local UID/GID. As an owner/group it is ignored; inside a DACL ACE it round-trips as the `sid:<canonical>` principal form (preserved verbatim by `SIDToPrincipal`/`PrincipalToSID`), so the ACE is kept but the SID maps to no local identity. Real AD integration is tracked by [#1231](https://github.com/marmos91/dittofs/issues/1231). |
+| Foreign domain SID on write | Unsupported / out of scope | A SID not in this machine's domain is not decodable to a local UID/GID. As an owner/group it is ignored; inside a DACL ACE it round-trips as the `sid:<canonical>` principal form (preserved verbatim by `SIDToPrincipal`/`PrincipalToSID`), so the ACE is kept but the SID maps to no local identity. Real AD integration is tracked by [#1231](https://github.com/cubbit/dittofs/issues/1231). |
 | Named NFS principal → SID (e.g. `alice@EXAMPLE.COM`) | Partial (lossy) | `PrincipalToSID` synthesizes a hash-based fallback SID (full 32-bit hash as a 6th sub-authority) so it is NOT decodable back to a numeric UID and round-trips through `sid:`. Deterministic but not a real AD SID. |
-| SID → name resolution (display) | Unsupported | Raw SIDs are shown by Windows when no LSA name lookup is available; tracked by [#236](https://github.com/marmos91/dittofs/issues/236). |
+| SID → name resolution (display) | Unsupported | Raw SIDs are shown by Windows when no LSA name lookup is available; tracked by [#236](https://github.com/cubbit/dittofs/issues/236). |
 
 ## Unmappable-SID-on-write behavior
 
@@ -159,7 +159,7 @@ project memory):
   in favor of Allow-only DACLs (Samba convention) so Explorer no longer shows
   spurious "Write: Deny"; CREATE-context (MxAc) parsing and SET\_INFO attribute
   persistence (Hidden/ReadOnly) were fixed. SID-to-name resolution is still
-  open ([#236](https://github.com/marmos91/dittofs/issues/236)), so Explorer can
+  open ([#236](https://github.com/cubbit/dittofs/issues/236)), so Explorer can
   display raw SIDs instead of names.
 * **AD / Kerberos SMB.** `alice@REALM` → uid 10001 verified live against an
   AD-DC over Kerberos-bound SMB (idmap\_rid SID→UID), confirming the
@@ -179,12 +179,12 @@ project memory):
    Windows mapping and are dropped.
 2. **Foreign AD/LDAP SIDs are not mapped to local identities.** They round-trip
    as opaque `sid:<canonical>` principals (so the ACE survives) but resolve to
-   no UID/GID. Full AD interop is [#1231](https://github.com/marmos91/dittofs/issues/1231).
+   no UID/GID. Full AD interop is [#1231](https://github.com/cubbit/dittofs/issues/1231).
 3. **Hash-based fallback SIDs for named principals are lossy.** Deterministic
    but not real AD SIDs; collisions are vanishingly rare but theoretically
    possible.
 4. **No LSA SID→name pipe.** Windows Explorer may show raw SIDs
-   ([#236](https://github.com/marmos91/dittofs/issues/236)).
+   ([#236](https://github.com/cubbit/dittofs/issues/236)).
 5. **nil-ACL access enforcement uses POSIX mode, not the synthesized DACL.**
    The `SynthesizeWindowsDefault` DACL shown to SMB clients for nil-ACL files is
    display-only; server-side access checks fall back to Unix mode bits, which
@@ -194,9 +194,9 @@ project memory):
 
 ## References
 
-* [#1228](https://github.com/marmos91/dittofs/issues/1228) — Windows-ACL / stable-handle fidelity (this matrix).
-* [#1231](https://github.com/marmos91/dittofs/issues/1231) — foreign AD/LDAP SID mapping.
-* [#236](https://github.com/marmos91/dittofs/issues/236) — SID-to-name (LSA) resolution.
+* [#1228](https://github.com/cubbit/dittofs/issues/1228) — Windows-ACL / stable-handle fidelity (this matrix).
+* [#1231](https://github.com/cubbit/dittofs/issues/1231) — foreign AD/LDAP SID mapping.
+* [#236](https://github.com/cubbit/dittofs/issues/236) — SID-to-name (LSA) resolution.
 * [Access Control](/v0.22/docs/connect/access-control) — cross-protocol ACL model and tradeoff analysis.
 * [MS-DTYP §2.4.4–2.4.6](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dtyp/) — SID / ACE / ACL / Security Descriptor formats.
 * [RFC 7530 §6](https://www.rfc-editor.org/rfc/rfc7530#section-6) — NFSv4 ACL model.

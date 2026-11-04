@@ -1,7 +1,7 @@
 ---
 title: Architecture
 description: How the pieces fit together.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.6.2/docs/ARCHITECTURE.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.6.2/docs/ARCHITECTURE.md
 sidebar:
   order: 1
 slug: v0.6/docs/contributing/architecture

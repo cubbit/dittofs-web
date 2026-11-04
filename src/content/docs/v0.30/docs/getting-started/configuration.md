@@ -1,7 +1,7 @@
 ---
 title: Configuration
 description: Server configuration file, environment variables, and runtime CLI examples.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.30.0/docs/guide/configuration.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.30.0/docs/guide/configuration.md
 sidebar:
   order: 3
 slug: v0.30/docs/getting-started/configuration
@@ -433,7 +433,7 @@ the added latency.
 
 > The recommended way to select this is the per-share `durability` enum
 > (`local` | `writeback` | `remote`); `require_durable_commit: true` is equivalent
-> to `durability: remote`. See [Durability & QoS tiers](https://github.com/marmos91/dittofs/blob/v0.30.0/docs/guide/durability.md) for the full
+> to `durability: remote`. See [Durability & QoS tiers](https://github.com/cubbit/dittofs/blob/v0.30.0/docs/guide/durability.md) for the full
 > spectrum and per-tier throughput numbers.
 
 `dfsctl store block stats` also shows `Pending Remote (bytes)` — the headline
@@ -499,7 +499,7 @@ dfsctl store block local edit <share> --config '{"dirty_expire_seconds": 5}'
 * Values below 1 s are clamped with a warning; non-numeric values are ignored.
 * This is a **ceiling on the loss window, not a durability guarantee**: only a
   returned `COMMIT`/`FLUSH` says the bytes are on the device. See
-  [Durability & QoS tiers](https://github.com/marmos91/dittofs/blob/v0.30.0/docs/guide/durability.md#the-dirty-age-ceiling-dirty_expire_seconds).
+  [Durability & QoS tiers](https://github.com/cubbit/dittofs/blob/v0.30.0/docs/guide/durability.md#the-dirty-age-ceiling-dirty_expire_seconds).
 * Applies to `fs` local stores; `memory` local stores ignore it.
 
 #### GC knobs
@@ -1860,7 +1860,7 @@ kerberos:
 channel and NTLM `TargetInfo` both need them). The `secret` / `bind_password`
 are redacted in `dfs config show`. For a full walkthrough — pre-creating the
 `DITTOFS$` account and testing the Explorer double-click — see
-[docs/guide/windows-ad-setup.md](https://github.com/marmos91/dittofs/blob/v0.30.0/docs/guide/windows-ad-setup.md).
+[docs/guide/windows-ad-setup.md](https://github.com/cubbit/dittofs/blob/v0.30.0/docs/guide/windows-ad-setup.md).
 
 ### 13. Identity Mapping Configuration
 

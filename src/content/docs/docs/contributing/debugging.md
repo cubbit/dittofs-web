@@ -1,7 +1,7 @@
 ---
 title: "Debugging Protocol Interop"
 description: "SMB/NFS pcap-diff interop debugging playbook."
-editUrl: "https://github.com/marmos91/dittofs/edit/develop/docs/internals/debugging.md"
+editUrl: "https://github.com/cubbit/dittofs/edit/develop/docs/internals/debugging.md"
 sidebar:
   order: 9
 # Synced from dittofs/docs/internals/debugging.md — do not edit here.

@@ -1,7 +1,7 @@
 ---
 title: Access Control
 description: How DittoFS models and enforces permissions and ACLs across NFS and SMB.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.22.0/docs/guide/access-control.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.22.0/docs/guide/access-control.md
 sidebar:
   order: 5
 slug: v0.22/docs/connect/access-control

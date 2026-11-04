@@ -1,7 +1,7 @@
 ---
 title: "NFS"
 description: "Serving NFSv3/4.0/4.1 and mounting from Linux and macOS."
-editUrl: "https://github.com/marmos91/dittofs/edit/develop/docs/guide/nfs.md"
+editUrl: "https://github.com/cubbit/dittofs/edit/develop/docs/guide/nfs.md"
 sidebar:
   order: 1
 # Synced from dittofs/docs/guide/nfs.md — do not edit here.

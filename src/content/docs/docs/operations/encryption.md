@@ -1,7 +1,7 @@
 ---
 title: "Encryption"
 description: "Client-side block encryption, key management, and KMIP."
-editUrl: "https://github.com/marmos91/dittofs/edit/develop/docs/guide/encryption.md"
+editUrl: "https://github.com/cubbit/dittofs/edit/develop/docs/guide/encryption.md"
 sidebar:
   order: 3
 # Synced from dittofs/docs/guide/encryption.md — do not edit here.
@@ -57,7 +57,7 @@ dfsctl store block add \
 Generate a fresh key file (no dedicated subcommand — call the Go helper directly):
 
 ```go
-import "github.com/marmos91/dittofs/pkg/block/middleware/encryption/keyprovider"
+import "github.com/cubbit/dittofs/pkg/block/middleware/encryption/keyprovider"
 
 bytes, _ := keyprovider.GenerateKeyFile("your-strong-passphrase")
 os.WriteFile("/etc/dittofs/keys/share.key", bytes, 0o600)

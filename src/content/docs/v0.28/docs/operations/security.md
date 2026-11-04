@@ -1,7 +1,7 @@
 ---
 title: Security
 description: Authentication methods, threat model notes, and best practices.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.28.1/docs/guide/security.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.28.1/docs/guide/security.md
 sidebar:
   order: 4
 slug: v0.28/docs/operations/security

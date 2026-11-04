@@ -1,7 +1,7 @@
 ---
 title: "Glossary"
 description: "Definitions of DittoFS terms and concepts."
-editUrl: "https://github.com/marmos91/dittofs/edit/develop/docs/guide/glossary.md"
+editUrl: "https://github.com/cubbit/dittofs/edit/develop/docs/guide/glossary.md"
 sidebar:
   order: 8
 # Synced from dittofs/docs/guide/glossary.md — do not edit here.

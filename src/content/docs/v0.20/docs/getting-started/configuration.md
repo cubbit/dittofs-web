@@ -1,7 +1,7 @@
 ---
 title: Configuration
 description: Server configuration file and environment variables.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.20.1/docs/CONFIGURATION.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.20.1/docs/CONFIGURATION.md
 sidebar:
   order: 3
 slug: v0.20/docs/getting-started/configuration

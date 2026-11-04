@@ -1,7 +1,7 @@
 ---
 title: "Security"
 description: "Authentication methods, threat model notes, and best practices."
-editUrl: "https://github.com/marmos91/dittofs/edit/develop/docs/guide/security.md"
+editUrl: "https://github.com/cubbit/dittofs/edit/develop/docs/guide/security.md"
 sidebar:
   order: 4
 # Synced from dittofs/docs/guide/security.md — do not edit here.
@@ -182,7 +182,7 @@ Security notes:
   so an AD user gets one Unix identity across SMB and NFS.
 
 See [identity.md](/docs/connect/identity) for the provider reference and
-[windows-ad-setup.md](https://github.com/marmos91/dittofs/blob/v0.36.0/docs/guide/windows-ad-setup.md) for the end-to-end operator runbook.
+[windows-ad-setup.md](https://github.com/cubbit/dittofs/blob/v0.36.0/docs/guide/windows-ad-setup.md) for the end-to-end operator runbook.
 
 ---
 

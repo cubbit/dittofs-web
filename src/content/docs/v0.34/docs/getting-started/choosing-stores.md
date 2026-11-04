@@ -1,7 +1,7 @@
 ---
 title: Choosing Stores
 description: Pick the right metadata and block stores for your workload.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.34.0/docs/guide/choosing-stores.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.34.0/docs/guide/choosing-stores.md
 sidebar:
   order: 4
 slug: v0.34/docs/getting-started/choosing-stores
@@ -70,7 +70,7 @@ absorbs writes, and hands them to an async syncer that offloads them to the bloc
   see the verified endpoint snippets in [Configuration § Block Store](/v0.34/docs/getting-started/configuration#6-block-store-configuration).
 * Dedup happens automatically across files in a share; identical content is stored once.
 * Pick a **commit acknowledgement** per share (`journal` or `block-store`; see the
-  [durability guide](https://github.com/marmos91/dittofs/blob/v0.34.0/docs/guide/durability.md)) — it sets how far a write must land before an NFS
+  [durability guide](https://github.com/cubbit/dittofs/blob/v0.34.0/docs/guide/durability.md)) — it sets how far a write must land before an NFS
   COMMIT or SMB Flush is acknowledged.
 * To migrate a legacy block layout to the content-addressed layout, see
   [Block store migration](/v0.34/docs/operations/block-store-migration).

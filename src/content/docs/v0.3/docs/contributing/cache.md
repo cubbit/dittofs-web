@@ -1,7 +1,7 @@
 ---
 title: Cache
 description: Cache design.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.3.4/docs/CACHE.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.3.4/docs/CACHE.md
 sidebar:
   order: 5
 slug: v0.3/docs/contributing/cache

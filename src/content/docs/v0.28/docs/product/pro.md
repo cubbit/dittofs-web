@@ -1,7 +1,7 @@
 ---
 title: DittoFS Pro
 description: The DittoFS Pro web dashboard for managing stores, shares, and adapters.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.28.1/docs/product/pro.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.28.1/docs/product/pro.md
 sidebar:
   order: 1
 slug: v0.28/docs/product/pro

@@ -6,7 +6,7 @@ import HowItWorks from "../components/landing/HowItWorks.astro";
 import WritePath from "../components/landing/WritePath.astro";
 import { getStars, formatStars, getLatestRelease } from "../lib/github";
 
-const GITHUB = "https://github.com/marmos91/dittofs";
+const GITHUB = "https://github.com/cubbit/dittofs";
 const stars = formatStars(await getStars());
 const version = await getLatestRelease();
 

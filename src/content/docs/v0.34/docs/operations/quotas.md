@@ -1,7 +1,7 @@
 ---
 title: Quotas
 description: Per-share byte and inode quotas with soft/hard limits and grace periods.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.34.0/docs/guide/quotas.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.34.0/docs/guide/quotas.md
 sidebar:
   order: 2
 slug: v0.34/docs/operations/quotas

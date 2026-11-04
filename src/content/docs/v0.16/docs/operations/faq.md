@@ -1,7 +1,7 @@
 ---
 title: FAQ
 description: Frequently asked questions.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.16.0/docs/FAQ.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.16.0/docs/FAQ.md
 sidebar:
   order: 10
 slug: v0.16/docs/operations/faq
@@ -145,7 +145,7 @@ CAS write path and adds mark-sweep GC. Phase 13 delivers the file-level
 dedup short-circuit that's expected to drive the primary VM-workload
 40-80% storage reduction target.
 
-Track progress: [#419](https://github.com/marmos91/dittofs/issues/419).
+Track progress: [#419](https://github.com/cubbit/dittofs/issues/419).
 
 ### What's an ObjectID and when does it get computed?
 
@@ -371,7 +371,7 @@ aggregate across `--parallel` workers, not per-worker).
 > per-share `block_layout` flag, the engine fail-loud routing, and
 > the `dfsctl blockstore migrate status` CLI + REST surfaces all
 > ship today. Track the production wire-up under
-> [#425](https://github.com/marmos91/dittofs/issues/425); do not
+> [#425](https://github.com/cubbit/dittofs/issues/425); do not
 > schedule a production migration window until it closes. See
 > [BLOCKSTORE\_MIGRATION.md — Known Limitation](/v0.16/docs/operations/block-store-migration#known-limitation-openofflineruntime-production-wiring)
 > for the full operator-facing context.
@@ -677,6 +677,6 @@ See `test/posix/known_failures.txt` for the complete list with detailed explanat
 ## Still Have Questions?
 
 * Check the other documentation in [docs/](.)
-* Search [existing GitHub issues](https://github.com/marmos91/dittofs/issues)
-* Open a [new issue](https://github.com/marmos91/dittofs/issues/new) for bugs or feature requests
-* Review [CLAUDE.md](https://github.com/marmos91/dittofs/blob/v0.16.0/CLAUDE.md) for detailed development guidance
+* Search [existing GitHub issues](https://github.com/cubbit/dittofs/issues)
+* Open a [new issue](https://github.com/cubbit/dittofs/issues/new) for bugs or feature requests
+* Review [CLAUDE.md](https://github.com/cubbit/dittofs/blob/v0.16.0/CLAUDE.md) for detailed development guidance

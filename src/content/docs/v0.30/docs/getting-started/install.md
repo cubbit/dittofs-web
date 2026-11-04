@@ -1,7 +1,7 @@
 ---
 title: Install & Deploy
 description: Binaries, Docker, and Kubernetes deployment options for DittoFS.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.30.0/docs/guide/install.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.30.0/docs/guide/install.md
 sidebar:
   order: 2
 slug: v0.30/docs/getting-started/install
@@ -9,7 +9,7 @@ slug: v0.30/docs/getting-started/install
 
 This guide covers running DittoFS beyond a local source build: package managers, Docker,
 and the Kubernetes operator. For the quick local path (Nix / Homebrew / source build), see
-the [README](https://github.com/marmos91/dittofs/blob/v0.30.0/README.md). For configuration details, see [CONFIGURATION.md](/v0.30/docs/getting-started/configuration).
+the [README](https://github.com/cubbit/dittofs/blob/v0.30.0/README.md). For configuration details, see [CONFIGURATION.md](/v0.30/docs/getting-started/configuration).
 
 DittoFS ships two binaries — `dfs` (the server daemon) and `dfsctl` (the REST client).
 Most package managers install both.
@@ -190,7 +190,7 @@ sudo systemctl enable --now dfs
 ### Windows (Scoop)
 
 ```powershell
-scoop bucket add marmos91 https://github.com/marmos91/scoop-bucket
+scoop bucket add cubbit https://github.com/cubbit/scoop-bucket
 scoop install dfs       # server daemon
 scoop install dfsctl    # client CLI
 ```
@@ -198,7 +198,7 @@ scoop install dfsctl    # client CLI
 When installed via the system package managers, the server runs under systemd as the `dfs`
 service. Set the admin password before the first start with the
 `DITTOFS_ADMIN_INITIAL_PASSWORD` environment variable (see the
-[README](https://github.com/marmos91/dittofs/blob/v0.30.0/README.md#first-run--admin-password)). Under systemd the server's stdout is
+[README](https://github.com/cubbit/dittofs/blob/v0.30.0/README.md#first-run--admin-password)). Under systemd the server's stdout is
 not a terminal, so an auto-generated password would **not** be shown or written to the
 service log — pre-setting it is the only way to know the credential.
 
@@ -285,5 +285,5 @@ default. To build and deploy from source instead, point `IMG` at your own regist
 `make docker-build docker-push IMG=<your-registry>/dittofs-operator:tag` then
 `make deploy IMG=<your-registry>/dittofs-operator:tag`.
 
-See the [`k8s/dittofs-operator/`](https://github.com/marmos91/dittofs/tree/v0.30.0/k8s/dittofs-operator/) directory for the CRD reference,
+See the [`k8s/dittofs-operator/`](https://github.com/cubbit/dittofs/tree/v0.30.0/k8s/dittofs-operator/) directory for the CRD reference,
 RBAC, and Helm chart configuration.

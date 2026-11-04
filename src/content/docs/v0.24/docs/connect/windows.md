@@ -1,7 +1,7 @@
 ---
 title: Windows Clients
 description: Connecting a Windows client to DittoFS over SMB.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.24.0/docs/guide/windows.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.24.0/docs/guide/windows.md
 sidebar:
   order: 3
 slug: v0.24/docs/connect/windows

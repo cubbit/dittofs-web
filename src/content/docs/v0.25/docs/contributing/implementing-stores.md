@@ -1,7 +1,7 @@
 ---
 title: Implementing Stores
 description: Contracts for building custom metadata and block stores.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.25.1/docs/internals/implementing-stores.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.25.1/docs/internals/implementing-stores.md
 sidebar:
   order: 7
 slug: v0.25/docs/contributing/implementing-stores
@@ -551,8 +551,8 @@ package mylocal_test
 import (
     "testing"
 
-    "github.com/marmos91/dittofs/pkg/block"
-    "github.com/marmos91/dittofs/pkg/block/blockstoretest"
+    "github.com/cubbit/dittofs/pkg/block"
+    "github.com/cubbit/dittofs/pkg/block/blockstoretest"
 )
 
 func TestMyLocalStore(t *testing.T) {
@@ -613,7 +613,7 @@ package myremote
 import (
     "context"
 
-    "github.com/marmos91/dittofs/pkg/block"
+    "github.com/cubbit/dittofs/pkg/block"
 )
 
 type MyRemoteStore struct {
@@ -756,8 +756,8 @@ package myremote_test
 import (
     "testing"
 
-    "github.com/marmos91/dittofs/pkg/block"
-    "github.com/marmos91/dittofs/pkg/block/blockstoretest"
+    "github.com/cubbit/dittofs/pkg/block"
+    "github.com/cubbit/dittofs/pkg/block/blockstoretest"
 )
 
 func TestMyRemoteStore(t *testing.T) {
@@ -868,7 +868,7 @@ package myremote_test
 
 import (
     "testing"
-    "github.com/marmos91/dittofs/pkg/block/blockstoretest"
+    "github.com/cubbit/dittofs/pkg/block/blockstoretest"
 )
 
 func TestMyRemoteBlockStore(t *testing.T) {

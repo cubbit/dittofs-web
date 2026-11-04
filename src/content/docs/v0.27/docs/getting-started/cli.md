@@ -1,7 +1,7 @@
 ---
 title: CLI Reference
 description: Complete reference for the dfs server and dfsctl client commands.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.27.0/docs/guide/cli.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.27.0/docs/guide/cli.md
 sidebar:
   order: 5
 slug: v0.27/docs/getting-started/cli

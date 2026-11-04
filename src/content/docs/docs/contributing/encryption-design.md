@@ -1,7 +1,7 @@
 ---
 title: "Encryption Design"
 description: "Internal envelope-encryption and key-management design."
-editUrl: "https://github.com/marmos91/dittofs/edit/develop/docs/internals/encryption-design.md"
+editUrl: "https://github.com/cubbit/dittofs/edit/develop/docs/internals/encryption-design.md"
 sidebar:
   order: 6
 # Synced from dittofs/docs/internals/encryption-design.md — do not edit here.

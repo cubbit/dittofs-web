@@ -1,7 +1,7 @@
 ---
 title: ACL Design
 description: Internal model for access-control lists across protocols.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.29.2/docs/internals/acl-design.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.29.2/docs/internals/acl-design.md
 sidebar:
   order: 4
 slug: v0.29/docs/contributing/acl-design

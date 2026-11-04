@@ -1,7 +1,7 @@
 ---
 title: Known Limitations
 description: Current limitations.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.3.4/docs/KNOWN_LIMITATIONS.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.3.4/docs/KNOWN_LIMITATIONS.md
 sidebar:
   order: 9
 slug: v0.3/docs/operations/known-limitations

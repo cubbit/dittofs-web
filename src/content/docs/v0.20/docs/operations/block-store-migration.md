@@ -1,7 +1,7 @@
 ---
 title: Block Store Migration
 description: Migrating block store layouts.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.20.1/docs/BLOCKSTORE_MIGRATION.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.20.1/docs/BLOCKSTORE_MIGRATION.md
 sidebar:
   order: 5
 slug: v0.20/docs/operations/block-store-migration

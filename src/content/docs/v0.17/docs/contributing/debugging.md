@@ -1,7 +1,7 @@
 ---
 title: Debugging
 description: Debugging DittoFS.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.17.0/docs/DEBUGGING.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.17.0/docs/DEBUGGING.md
 sidebar:
   order: 8
 slug: v0.17/docs/contributing/debugging

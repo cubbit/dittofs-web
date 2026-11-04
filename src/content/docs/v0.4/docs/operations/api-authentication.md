@@ -1,7 +1,7 @@
 ---
 title: API Authentication
 description: Control plane API authentication.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.4.2/docs/API_AUTHENTICATION.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.4.2/docs/API_AUTHENTICATION.md
 sidebar:
   order: 7
 slug: v0.4/docs/operations/api-authentication

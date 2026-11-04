@@ -1,7 +1,7 @@
 ---
 title: FAQ
 description: Frequently asked questions.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.13.0/docs/FAQ.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.13.0/docs/FAQ.md
 sidebar:
   order: 10
 slug: v0.13/docs/operations/faq
@@ -412,6 +412,6 @@ See `test/posix/known_failures.txt` for the complete list with detailed explanat
 ## Still Have Questions?
 
 * Check the other documentation in [docs/](.)
-* Search [existing GitHub issues](https://github.com/marmos91/dittofs/issues)
-* Open a [new issue](https://github.com/marmos91/dittofs/issues/new) for bugs or feature requests
-* Review [CLAUDE.md](https://github.com/marmos91/dittofs/blob/v0.13.0/CLAUDE.md) for detailed development guidance
+* Search [existing GitHub issues](https://github.com/cubbit/dittofs/issues)
+* Open a [new issue](https://github.com/cubbit/dittofs/issues/new) for bugs or feature requests
+* Review [CLAUDE.md](https://github.com/cubbit/dittofs/blob/v0.13.0/CLAUDE.md) for detailed development guidance

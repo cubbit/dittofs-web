@@ -1,7 +1,7 @@
 // Build-time GitHub repo stats. Fetched once per build/dev process and cached,
 // so Header and hero share a single request. Fails soft to null (offline,
 // rate-limited, or private repo) — callers hide the count when null.
-const REPO = "marmos91/dittofs";
+const REPO = "cubbit/dittofs";
 
 let cached: Promise<number | null> | null = null;
 

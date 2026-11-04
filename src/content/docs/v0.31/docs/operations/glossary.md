@@ -1,7 +1,7 @@
 ---
 title: Glossary
 description: Definitions of DittoFS terms and concepts.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.31.1/docs/guide/glossary.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.31.1/docs/guide/glossary.md
 sidebar:
   order: 8
 slug: v0.31/docs/operations/glossary

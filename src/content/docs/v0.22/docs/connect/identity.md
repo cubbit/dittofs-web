@@ -1,7 +1,7 @@
 ---
 title: Identity (AD / LDAP / Kerberos)
 description: Active Directory, LDAP, Kerberos, and NTLM integration.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.22.0/docs/guide/identity.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.22.0/docs/guide/identity.md
 sidebar:
   order: 4
 slug: v0.22/docs/connect/identity

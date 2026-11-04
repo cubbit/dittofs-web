@@ -1,7 +1,7 @@
 ---
 title: Troubleshooting
 description: Common issues and how to resolve them.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.31.1/docs/guide/troubleshooting.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.31.1/docs/guide/troubleshooting.md
 sidebar:
   order: 6
 slug: v0.31/docs/operations/troubleshooting
@@ -742,7 +742,7 @@ setfacl: Operation not supported
 
 If you're still experiencing issues:
 
-1. **Check existing issues:** [GitHub Issues](https://github.com/marmos91/dittofs/issues)
+1. **Check existing issues:** [GitHub Issues](https://github.com/cubbit/dittofs/issues)
 2. **Enable debug logging** and capture relevant output
 3. **Open a new issue** with:
    * DittoFS version

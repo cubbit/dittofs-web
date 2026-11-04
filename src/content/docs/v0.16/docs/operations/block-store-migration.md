@@ -1,7 +1,7 @@
 ---
 title: Block Store Migration
 description: Migrating block store layouts.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.16.0/docs/BLOCKSTORE_MIGRATION.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.16.0/docs/BLOCKSTORE_MIGRATION.md
 sidebar:
   order: 5
 slug: v0.16/docs/operations/block-store-migration
@@ -273,7 +273,7 @@ are deleted only after a HEAD-per-ref integrity check passes.
 > `ErrOfflineRuntimeNotWired` from `openOfflineRuntime` when invoked
 > against the production controlplane. **End-to-end migration is not
 > yet runnable in production until this gap closes.** Track the
-> remaining wire-up under [#425](https://github.com/marmos91/dittofs/issues/425).
+> remaining wire-up under [#425](https://github.com/cubbit/dittofs/issues/425).
 
 What works today:
 
@@ -301,7 +301,7 @@ What does NOT work yet:
 
 * **Do not schedule a production migration window yet.** Wait for the
   follow-up release that closes
-  [#425](https://github.com/marmos91/dittofs/issues/425). Subscribe to
+  [#425](https://github.com/cubbit/dittofs/issues/425). Subscribe to
   the GitHub issue for the cut.
 * **Use the unit-test fixtures for any tooling validation.** The loop
   is fully exercised by `cmd/dfsctl/commands/blockstore/migrate_loop_test.go`
@@ -318,7 +318,7 @@ What does NOT work yet:
 The rest of this section documents the **intended** runbook so
 operators can dry-read it now and so the four worked transcripts
 exercise the full path once
-[#425](https://github.com/marmos91/dittofs/issues/425) closes. The
+[#425](https://github.com/cubbit/dittofs/issues/425) closes. The
 flag set, output shape, and journal layout described below are the
 shipped contract; only the production composition root is missing.
 
@@ -342,7 +342,7 @@ shipped contract; only the production composition root is missing.
 * \[ ] Confirm v0.15+ binary: `dfs --version`.
 * \[ ] Confirm openOfflineRuntime is wired in your build (see
   [Known Limitation](#known-limitation-openofflineruntime-production-wiring) — this guard is removed once
-  [#425](https://github.com/marmos91/dittofs/issues/425) closes).
+  [#425](https://github.com/cubbit/dittofs/issues/425) closes).
 * \[ ] Confirm the share's `BlockLayout`:
   `dfsctl blockstore migrate status --share NAME` reports
   `BlockLayout: legacy`.
@@ -615,7 +615,7 @@ the append log is fsync'd per entry. Re-run the command to resume.
 ### Worked transcripts
 
 > **Note:** The transcripts below show the *expected* output once
-> [#425](https://github.com/marmos91/dittofs/issues/425) closes. The
+> [#425](https://github.com/cubbit/dittofs/issues/425) closes. The
 > flag set, output shape, and journal layout match the shipped v0.15.0
 > contract; only the production composition root is missing today.
 > Use them as the reference for what your terminal will look like

@@ -2,7 +2,7 @@
 title: Architecture
 description: "How DittoFS is put together: adapters, the runtime control plane,
   and pluggable stores."
-editUrl: https://github.com/marmos91/dittofs/edit/v0.23.2/docs/internals/architecture.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.23.2/docs/internals/architecture.md
 sidebar:
   order: 1
 slug: v0.23/docs/contributing/architecture

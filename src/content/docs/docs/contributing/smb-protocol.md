@@ -1,7 +1,7 @@
 ---
 title: "SMB Protocol Internals"
 description: "Internal design of the SMB adapter, sessions, and handlers."
-editUrl: "https://github.com/marmos91/dittofs/edit/develop/docs/internals/smb-protocol.md"
+editUrl: "https://github.com/cubbit/dittofs/edit/develop/docs/internals/smb-protocol.md"
 sidebar:
   order: 3
 # Synced from dittofs/docs/internals/smb-protocol.md — do not edit here.

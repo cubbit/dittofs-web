@@ -1,7 +1,7 @@
 ---
 title: "Block Store Migration"
 description: "Moving data between block storage backends."
-editUrl: "https://github.com/marmos91/dittofs/edit/develop/docs/guide/block-store-migration.md"
+editUrl: "https://github.com/cubbit/dittofs/edit/develop/docs/guide/block-store-migration.md"
 sidebar:
   order: 5
 # Synced from dittofs/docs/guide/block-store-migration.md — do not edit here.

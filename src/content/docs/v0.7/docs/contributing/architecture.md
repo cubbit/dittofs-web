@@ -1,7 +1,7 @@
 ---
 title: Architecture
 description: How the pieces fit together.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.7.1/docs/ARCHITECTURE.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.7.1/docs/ARCHITECTURE.md
 sidebar:
   order: 1
 slug: v0.7/docs/contributing/architecture
@@ -188,7 +188,7 @@ DittoFS uses a **Runtime-centric architecture** where the Runtime is the single 
 * Newest-wins read merging for overlapping slices
 * LRU eviction with dirty data protection
 * Uses `wal.Persister` interface for crash recovery
-* See [Cache README](https://github.com/marmos91/dittofs/blob/v0.7.1/pkg/cache/README.md) for detailed architecture
+* See [Cache README](https://github.com/cubbit/dittofs/blob/v0.7.1/pkg/cache/README.md) for detailed architecture
 
 **10. WAL Persistence** (`pkg/cache/wal/`)
 

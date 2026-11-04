@@ -2,7 +2,7 @@
 title: SMB
 description: SMB2/3 dialects, encryption, signing, leases, durable handles, and
   client usage.
-editUrl: https://github.com/marmos91/dittofs/edit/v0.34.0/docs/guide/smb.md
+editUrl: https://github.com/cubbit/dittofs/edit/v0.34.0/docs/guide/smb.md
 sidebar:
   order: 2
 slug: v0.34/docs/connect/smb
