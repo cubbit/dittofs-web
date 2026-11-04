@@ -318,8 +318,6 @@ adapters:
   smb:
     encryption:
       encryption_mode: preferred   # disabled | preferred | required
-      allowed_ciphers: []          # Empty = all in default order
-      # Custom cipher preference: [AES-128-GCM, AES-128-CCM]
 ```
 
 Per-share encryption:

@@ -67,12 +67,12 @@ absorbs writes, and hands them to an async syncer that offloads them to the bloc
   see the verified endpoint snippets in [Configuration § Block Store](/docs/getting-started/configuration#6-block-store-configuration).
 - Dedup happens automatically across files in a share; identical content is stored once.
 - Pick a **commit acknowledgement** per share (`journal` or `block-store`; see the
-  [durability guide](https://github.com/marmos91/dittofs/blob/v0.35.0/docs/guide/durability.md)) — it sets how far a write must land before an NFS
+  [durability guide](https://github.com/marmos91/dittofs/blob/v0.36.0/docs/guide/durability.md)) — it sets how far a write must land before an NFS
   COMMIT or SMB Flush is acknowledged.
 - To migrate a legacy block layout to the content-addressed layout, see
   [Block store migration](/docs/operations/block-store-migration).
 - To move a share off a removed metadata store type (`postgres`, `sqlite`,
-  `memory`), see [Metadata store migration](https://github.com/marmos91/dittofs/blob/v0.35.0/docs/guide/metadata-store-migration.md).
+  `memory`), see [Metadata store migration](https://github.com/marmos91/dittofs/blob/v0.36.0/docs/guide/metadata-store-migration.md).
 
 ## Control-plane database
 

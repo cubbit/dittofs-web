@@ -305,7 +305,8 @@ ls: cannot access 'file.txt': Stale file handle
 **Causes:**
 - Server was restarted with an in-memory metadata store (handles lost)
 - File was deleted while client held a handle
-- Metadata backend was changed
+- Metadata backend was changed, for example when a share moved off a removed
+  metadata store type ([Metadata store migration](https://github.com/marmos91/dittofs/blob/v0.36.0/docs/guide/metadata-store-migration.md))
 
 **Solutions:**
 
@@ -315,7 +316,7 @@ ls: cannot access 'file.txt': Stale file handle
    sudo mount -t nfs -o nfsvers=3,tcp,port=12049,mountport=12049 localhost:/export /mnt/test
    ```
 
-2. **For persistent handles, use BadgerDB metadata:**
+2. **For persistent handles, use an on-disk BadgerDB store (not `--in-memory`):**
    ```bash
    ./dfsctl store metadata add --name persistent --type badger \
      --config '{"path":"/var/lib/dittofs/metadata"}'

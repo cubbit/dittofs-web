@@ -425,7 +425,7 @@ a COMMIT waits for is the per-share **commit acknowledgement**, `commit_ack`
 | `block-store` | Acknowledge only when the data is on a durable store: `committed := localDurable \|\| (Finalized && remoteDurable)`. Every commit waits for an upload. |
 
 `dfsctl share show <name>` prints the setting in force as a **Commit Ack** row.
-See [Durability](https://github.com/marmos91/dittofs/blob/v0.35.0/docs/guide/durability.md) for what each one survives and the throughput
+See [Durability](https://github.com/marmos91/dittofs/blob/v0.36.0/docs/guide/durability.md) for what each one survives and the throughput
 cost — and note that the metadata-commit relaxation is a **separate, independent**
 axis, not a third value of this one.
 
@@ -436,8 +436,8 @@ What happens when that cannot finish depends on whether the journal is durable:
 - **Durable journal (the normal case):** an unhealthy block store makes the flush
   return its soft, non-finalized result, and the COMMIT is acked anyway — the
   bytes already survive a restart, and the syncer keeps retrying.
-- **Volatile local tier** (a journal explicitly marked `{"durable": false}`, or
-  the in-memory store used by tests): nothing crash-safe holds the bytes, so the
+- **Volatile local tier** (a journal explicitly marked `{"durable": false}`):
+  nothing crash-safe holds the bytes, so the
   COMMIT returns a transient I/O error (`NFS3ERR_IO` / `NFS4ERR_IO` / SMB
   `STATUS_UNEXPECTED_IO_ERROR`) and the client re-drives.
 
@@ -506,7 +506,7 @@ per-share `dirty_expire_seconds` key in the local block store's `config` JSON.
 - Values below 1 s are clamped with a warning.
 - This is a **ceiling on the loss window, not a durability guarantee**: only a
   returned `COMMIT`/`FLUSH` says the bytes are on the device. See
-  [Durability](https://github.com/marmos91/dittofs/blob/v0.35.0/docs/guide/durability.md#the-dirty-age-ceiling-dirty_expire).
+  [Durability](https://github.com/marmos91/dittofs/blob/v0.36.0/docs/guide/durability.md#the-dirty-age-ceiling-dirty_expire).
 
 #### GC knobs
 
@@ -1144,7 +1144,7 @@ was matching on the old name.
 - `shares.remote_block_store_id` → `shares.block_store_id`
 - `shares.local_block_store_id` → dropped, after its `durability` / `writeback` /
   `require_durable_commit` settings are carried onto the share as `commit_ack` and
-  `relaxed_metadata_commit` (see [Durability](https://github.com/marmos91/dittofs/blob/v0.35.0/docs/guide/durability.md))
+  `relaxed_metadata_commit` (see [Durability](https://github.com/marmos91/dittofs/blob/v0.36.0/docs/guide/durability.md))
 - `block_store_configs.kind` → dropped, after the collision check above
 - `blockstore.journal.default_remote_cache_size` → deleted; per-share
   `--journal-size` is now the whole of the sizing policy
@@ -1159,7 +1159,8 @@ planned backend for multi-node deployments; it is not implemented yet.
 
 A store row naming `memory`, `sqlite` or `postgres` (types earlier releases
 accepted) fails with `unsupported metadata store type "&lt;x&gt;": badger is the only
-metadata store type`; recreate it as `badger`. Filesystem capabilities and
+metadata store type`; see the
+[metadata store migration guide](https://github.com/marmos91/dittofs/blob/v0.36.0/docs/guide/metadata-store-migration.md). Filesystem capabilities and
 limits are supplied by the metadata store and protocol implementation, not by a
 config-file capabilities block.
 
@@ -1245,7 +1246,7 @@ Only an event that takes the kernel down — power loss, kernel panic, hyperviso
 reset — can lose that window. Killing the `dfs` process (`SIGKILL`, OOM-kill,
 panic) loses nothing at either setting, because an acknowledged write is already
 in the kernel page cache. See
-[Durability → Namespace durability](https://github.com/marmos91/dittofs/blob/v0.35.0/docs/guide/durability.md#namespace-durability-relaxed_durability).
+[Durability → Namespace durability](https://github.com/marmos91/dittofs/blob/v0.36.0/docs/guide/durability.md#namespace-durability-relaxed_durability).
 
 #### Metadata Store Instances (CLI)
 
@@ -1536,7 +1537,7 @@ exposed override, `adapter edit smb --config` is not a workaround.
 | `signing.enabled`, `signing.required` | `dfsctl adapter settings smb update --signing required`; modes are `disabled`, `enabled`, and `required`. SMB 3.1.1 still requires signing. |
 | `signing.preferred_algorithms` | No exposed override; algorithms are negotiated from built-in support. |
 | `encryption.encryption_mode` | No equivalent three-mode flag. `dfsctl adapter settings smb update --enable-encryption` can enable encryption support, but does not select a global `required` policy; see [encryption below](#smb3-encryption-configuration). |
-| `encryption.allowed_ciphers` | No exposed override; ciphers are negotiated from built-in support. |
+| `encryption.allowed_ciphers` | Not configurable: the cipher set is fixed, and `adapter edit smb --config` refuses a non-empty list. |
 | `leases.enabled` | No exposed global lease toggle. |
 | `leases.directory_leases` | REST-only `directory_leasing_enabled` in `PATCH /api/v1/adapters/smb/settings`; no CLI flag. |
 | `leases.lease_break_timeout` | No SMB CLI override: lease breaks use a fixed **5-second** bound. `--oplock-break-timeout` controls traditional oplocks only. |
@@ -1800,7 +1801,7 @@ kerberos:
 channel and NTLM `TargetInfo` both need them). The `secret` / `bind_password`
 are redacted in `dfs config show`. For a full walkthrough — pre-creating the
 `DITTOFS$` account and testing the Explorer double-click — see
-[docs/guide/windows-ad-setup.md](https://github.com/marmos91/dittofs/blob/v0.35.0/docs/guide/windows-ad-setup.md).
+[docs/guide/windows-ad-setup.md](https://github.com/marmos91/dittofs/blob/v0.36.0/docs/guide/windows-ad-setup.md).
 
 ### 13. Identity Mapping Configuration
 
