@@ -3,6 +3,7 @@ import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
 import starlight from "@astrojs/starlight";
 import starlightVersions from "starlight-versions";
+import tailwindcss from "@tailwindcss/vite";
 import consentFooter from "./src/plugins/consent-footer";
 import { readFileSync } from "node:fs";
 import docsImages from "./integrations/docs-images.mjs";
@@ -79,6 +80,7 @@ const GITHUB_REPO = "https://github.com/cubbit/dittofs";
 // https://astro.build/config
 export default defineConfig({
   site: SITE,
+  vite: { plugins: [tailwindcss()] },
   integrations: [
     react(),
     docsImages(),
