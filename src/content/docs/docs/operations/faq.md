@@ -159,7 +159,7 @@ It depends on how the `badger` metadata store is configured:
 `badger` is the only metadata store type. A store row still naming `memory`,
 `sqlite` or `postgres` fails with `unsupported metadata store type "&lt;x&gt;": badger is
 the only metadata store type`; see the
-[metadata store migration guide](https://github.com/cubbit/dittofs/blob/v0.36.0/docs/guide/metadata-store-migration.md). A distributed transactional
+[metadata store migration guide](https://github.com/cubbit/dittofs/blob/v0.37.0/docs/guide/metadata-store-migration.md). A distributed transactional
 key-value store (TiKV preferred) is the planned backend for multi-node deployments;
 it is not implemented yet.
 
@@ -216,7 +216,7 @@ Triggers:
 
 - Periodic, on by default. The server runs GC every `gc.auto_interval`
   (default 15m; values in (0, 1m) are refused) unless `gc.auto_enabled` is
-  false. See [Garbage Collection](https://github.com/cubbit/dittofs/blob/v0.36.0/docs/guide/garbage-collection.md#automatic-gc-default).
+  false. See [Garbage Collection](https://github.com/cubbit/dittofs/blob/v0.37.0/docs/guide/garbage-collection.md#automatic-gc-default).
   A scheduled run reports in the server log only; `gc-status` shows the last
   on-demand run.
 - On-demand via `dfsctl store block gc <share> [--dry-run]`. Inspect the
@@ -787,15 +787,15 @@ This pass rate is measured on the BadgerDB metadata store.
 | `lockf/*` | NFSv3 NLM locking is opt-in (`--udp-enabled` + portmapper on 111); use `vers=4` |
 | `xattr/*`, `*xattr/*` | Not in NFSv3 |
 | `fallocate/*` | No ALLOCATE in NFSv3 (supported over NFSv4.2 — see above) |
-| `chflags/*` | BSD-specific |
+| `chflags/*` | BSD-specific file flags, not supported; on Linux pjdfstest ends these tests early and reports them as passed |
 
 **Note**: Only `utimensat/09.t:test5` actually fails in current pjdfstest runs. Other patterns either don't have tests in the suite or the tests are skipped.
 
-See `test/posix/KNOWN_FAILURES.md` for the complete list with detailed explanations.
+See `test/posix/known.yaml` for the complete list with detailed explanations.
 
 ## Still Have Questions?
 
-- Check the other documentation in [docs/](https://github.com/cubbit/dittofs/tree/v0.36.0/docs/guide)
+- Check the other documentation in [docs/](https://github.com/cubbit/dittofs/tree/v0.37.0/docs/guide)
 - Search [existing GitHub issues](https://github.com/cubbit/dittofs/issues)
 - Open a [new issue](https://github.com/cubbit/dittofs/issues/new) for bugs or feature requests
-- Review [CLAUDE.md](https://github.com/cubbit/dittofs/blob/v0.36.0/CLAUDE.md) for detailed development guidance
+- Review [CLAUDE.md](https://github.com/cubbit/dittofs/blob/v0.37.0/CLAUDE.md) for detailed development guidance

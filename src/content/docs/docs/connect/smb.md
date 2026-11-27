@@ -38,6 +38,7 @@ DittoFS negotiates the highest mutually-supported dialect with each client.
 | Dialect | Hex | Key Features |
 | --------- | -------- | -------------- |
 | SMB 2.0.2 | 0x0202 | Basic file operations, credits, HMAC-SHA256 signing |
+| SMB 2.1 | 0x0210 | Leasing, large MTU |
 | SMB 3.0 | 0x0300 | AES-128-CCM encryption, AES-128-CMAC signing, secure dialect negotiation |
 | SMB 3.0.2 | 0x0302 | VALIDATE_NEGOTIATE_INFO downgrade protection |
 | SMB 3.1.1 | 0x0311 | Preauth integrity (SHA-512), AES-256/128-GCM & -CCM encryption (AES-256-GCM preferred), GMAC signing, negotiate contexts |
@@ -100,7 +101,7 @@ The matching `dfsctl` convenience wrapper is shown under
 
 | Feature | Status | Notes |
 | --------- | -------- | ------- |
-| Multi-Dialect Negotiation | Implemented | 2.0.2, 3.0, 3.0.2, 3.1.1 |
+| Multi-Dialect Negotiation | Implemented | 2.0.2, 2.1, 3.0, 3.0.2, 3.1.1 |
 | Negotiate Contexts | Implemented | PREAUTH_INTEGRITY, ENCRYPTION, SIGNING |
 | Preauth Integrity Hash | Implemented | SHA-512 chain over raw wire bytes |
 | AES-GCM Encryption | Implemented | Default for 3.1.1 |
@@ -348,6 +349,7 @@ Signing algorithms by dialect:
 | Dialect | Algorithm |
 | --------- | ----------- |
 | SMB 2.0.2 | HMAC-SHA256 |
+| SMB 2.1 | HMAC-SHA256 |
 | SMB 3.0 | AES-128-CMAC |
 | SMB 3.0.2 | AES-128-CMAC |
 | SMB 3.1.1 | AES-128-GMAC (preferred) or AES-128-CMAC |
@@ -503,6 +505,23 @@ The secret is stored at-rest and is write-only / redacted in API responses.
 > **Note**: end-to-end interoperability of the NETLOGON secure channel against a Samba AD-DC
 > is still being validated — the sealed-schannel `AlterContext` is currently rejected by the
 > test DC (`RPC_S_UNKNOWN_AUTHN_SERVICE`); see #1345.
+
+### Share access policy
+
+A share's access policy (`require_kerberos`, `allow_auth_sys`,
+`min_kerberos_level` and the netgroup client allowlist, set with
+`dfsctl share nfs-config set`) applies to SMB as well as NFS. It is checked at
+TREE_CONNECT and again on every request on the tree, so a policy change, a
+re-authentication with a weaker proof, or a channel bound from another address
+takes effect on the next request. A refusal is `STATUS_ACCESS_DENIED`. The
+defaults admit every session.
+
+| Setting | Over SMB |
+|---------|----------|
+| `require_kerberos` | Refuses NTLM, guest and anonymous sessions. |
+| `allow_auth_sys=false` | Refuses guest and anonymous sessions; NTLM and Kerberos pass. |
+| `min_kerberos_level` | The protection floor for any authenticated session, NTLM included. `krb5i` needs a session that enforces signing (signing required, or dialect 3.1.1); otherwise the tree is made to require encryption when the session can encrypt. `krb5p` needs every request on the tree encrypted, by the session or by the tree (`SMB2_SHAREFLAG_ENCRYPT_DATA`, set by the share's `encrypt_data` or by this floor); a session that cannot encrypt, such as SMB 2.x, is refused. Guest and anonymous sessions answer to `allow_auth_sys` alone. |
+| `netgroup` | The address of the connection carrying the request must be in the netgroup, as for NFS. An edit to a netgroup's members applies once the cached verdict for that address expires. |
 
 ### Guest Sessions
 

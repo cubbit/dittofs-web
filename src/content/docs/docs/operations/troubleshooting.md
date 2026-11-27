@@ -306,7 +306,7 @@ ls: cannot access 'file.txt': Stale file handle
 - Server was restarted with an in-memory metadata store (handles lost)
 - File was deleted while client held a handle
 - Metadata backend was changed, for example when a share moved off a removed
-  metadata store type ([Metadata store migration](https://github.com/cubbit/dittofs/blob/v0.36.0/docs/guide/metadata-store-migration.md))
+  metadata store type ([Metadata store migration](https://github.com/cubbit/dittofs/blob/v0.37.0/docs/guide/metadata-store-migration.md))
 
 **Solutions:**
 

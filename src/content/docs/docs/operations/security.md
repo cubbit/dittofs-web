@@ -182,7 +182,7 @@ Security notes:
   so an AD user gets one Unix identity across SMB and NFS.
 
 See [identity.md](/docs/connect/identity) for the provider reference and
-[windows-ad-setup.md](https://github.com/cubbit/dittofs/blob/v0.36.0/docs/guide/windows-ad-setup.md) for the end-to-end operator runbook.
+[windows-ad-setup.md](https://github.com/cubbit/dittofs/blob/v0.37.0/docs/guide/windows-ad-setup.md) for the end-to-end operator runbook.
 
 ---
 
@@ -298,7 +298,8 @@ dfsctl netgroup add-member trusted-net --type ip   --value 192.168.1.50
 dfsctl share nfs-config set /export --netgroup trusted-net
 ```
 
-The netgroup is enforced on both NFS versions, on paths that do not share code:
+The netgroup is enforced on both NFS versions and on SMB, on paths that do not
+share code:
 
 - **NFSv3** — checked at MOUNT and refused with `MNT3ERR_ACCES`. The check runs
   **only** at mount time; the per-operation path re-checks the auth-flavor
@@ -307,6 +308,12 @@ The netgroup is enforced on both NFS versions, on paths that do not share code:
   share handle enters a compound (PUTFH, or a LOOKUP crossing an export
   junction out of the pseudo-fs) and again whenever an operation builds an auth
   context. A client outside the allowlist gets `NFS4ERR_ACCESS`.
+- **SMB**: checked at TREE_CONNECT and again on every request on the tree,
+  against the address of the connection carrying it, and refused with
+  `STATUS_ACCESS_DENIED`. Attaching or changing the share's netgroup applies
+  to the next request; an edit to the netgroup's members applies once the
+  cached verdict for that address expires (30 seconds). See
+  [SMB § Share access policy](/docs/connect/smb#share-access-policy).
 
 **Consequence for tightening an export.** Because v4 re-checks per request,
 adding or narrowing a netgroup takes effect on a v4 client's next operation,
