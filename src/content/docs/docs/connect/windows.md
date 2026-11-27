@@ -10,8 +10,8 @@ sidebar:
 This guide walks through mounting a DittoFS share on a Windows machine over SMB, and using the
 Windows NFS client if needed. It assumes DittoFS is already running on a Linux or macOS host.
 
-For the test VM setup and protocol conformance runbook used by contributors, see
-[`../internals/testing.md`](/docs/contributing/testing).
+For the Windows test VM and the manual checklists contributors use, see
+[`../internals/testing-windows.md`](https://github.com/cubbit/dittofs/blob/v0.37.0/docs/internals/testing-windows.md).
 
 ## Table of Contents
 
@@ -127,7 +127,7 @@ logon script running `net use Z: \\<host>\<share> /persistent:yes` — no
 credentials are passed, Windows uses the logged-in user's ticket (SSO).
 
 Grant AD users/groups directly, with no local DittoFS accounts — see the
-[Windows AD setup runbook](https://github.com/cubbit/dittofs/blob/v0.36.0/docs/guide/windows-ad-setup.md).
+[Windows AD setup runbook](https://github.com/cubbit/dittofs/blob/v0.37.0/docs/guide/windows-ad-setup.md).
 
 ---
 
@@ -183,7 +183,7 @@ SMB3 encryption and signing, change notifications, durable handles, and server-s
 | Symptom | Cause | Solution |
 |---------|-------|----------|
 | "The network path was not found" | DittoFS not running or firewall blocking the port | Verify `dfs start` is running; check port 12445 is accessible with `Test-NetConnection` |
-| "Access denied" | Invalid credentials or missing share permissions | Check share permissions (`dfsctl share permission list /<share>`). For a local user, verify it exists (`dfsctl user list`). For an AD user, no local account is needed — confirm a grant matches their SID or one of their AD group SIDs (see [windows-ad-setup.md](https://github.com/cubbit/dittofs/blob/v0.36.0/docs/guide/windows-ad-setup.md)) |
+| "Access denied" | Invalid credentials or missing share permissions | Check share permissions (`dfsctl share permission list /<share>`). For a local user, verify it exists (`dfsctl user list`). For an AD user, no local account is needed — confirm a grant matches their SID or one of their AD group SIDs (see [windows-ad-setup.md](https://github.com/cubbit/dittofs/blob/v0.37.0/docs/guide/windows-ad-setup.md)) |
 | "The specified network name is no longer available" | Connection dropped during operation | Retry `net use`; check DittoFS logs for errors |
 | "Insecure guest logon" error | Windows 11 24H2 blocks guest logons by default | Follow [Enabling insecure guest logons](#enabling-insecure-guest-logons-if-needed) above |
 
